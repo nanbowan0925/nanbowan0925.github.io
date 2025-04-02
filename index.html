@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>自动注册 + 推广脚本合集</title>
+  <title>AI 自动注册 + 推广脚本合集商城</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>自动注册 + 推广 + 群发 + 数据采集脚本合集</h1>
-    <p>所有脚本自动化运行，无需技术配置，付款后系统自动发货。</p >
+    <h1>AI 自动注册 + 群发引流脚本合集</h1>
+    <p style="text-align: center; font-size: 16px; margin-bottom: 30px;">
+      所有脚本支持自动运行，扫码付款后系统自动发货至邮箱。
+    </p >
 
-    <h2>专区一：自动注册脚本 <span style="color: green;">（29 USDT）</span></h2>
+    <h2>专区一：自动注册脚本（29 USDT）</h2>
     <ul>
       <li>Telegram 注册脚本</li>
       <li>TikTok 注册脚本</li>
@@ -20,7 +22,7 @@
       <li>Instagram 注册脚本</li>
     </ul>
 
-    <h2>专区二：推广 / 群发 / 数据采集脚本 <span style="color: green;">（39 USDT）</span></h2>
+    <h2>专区二：推广 / 群发 / 数据采集脚本（39 USDT）</h2>
     <ul>
       <li>Telegram 自动群发脚本</li>
       <li>TikTok 评论群发脚本</li>
@@ -30,52 +32,61 @@
       <li>Telegram 群成员采集脚本</li>
     </ul>
 
-    <h2>AI无人直播脚本 <span style="color: green;">（49 USDT）</span></h2>
+    <h2>AI 无人直播脚本（49 USDT）</h2>
     <ul>
-      <li>TikTok AI 无人直播脚本（自动开播 + 自动回复弹幕）</li>
+      <li>TikTok AI 无人直播（自动开播 + 自动回复弹幕）</li>
     </ul>
 
     <div class="tip">
-      请填写邮箱并选择所需脚本，系统将自动跳转收款页面。付款完成后自动发送 ZIP 包脚本至邮箱。
+      请填写收货邮箱并选择所需脚本，点击“立即购买”后自动跳转付款页面，系统检测付款成功后会自动发货。
     </div>
 
-    <label for="email">收货邮箱：</label>
-    <input type="email" id="email" placeholder="请输入你的邮箱">
+    <form id="buyForm">
+      <label for="email">收货邮箱</label>
+      <input type="email" id="email" placeholder="请输入你的邮箱" required />
 
-    <label for="script">选择脚本：</label>
-    <select id="script">
-      <option value="">请选择...</option>
-      <option value="telegram_register">Telegram 注册脚本 - 29 USDT</option>
-      <option value="tiktok_register">TikTok 注册脚本 - 29 USDT</option>
-      <option value="twitter_register">Twitter 注册脚本 - 29 USDT</option>
-      <option value="facebook_register">Facebook 注册脚本 - 29 USDT</option>
-      <option value="instagram_register">Instagram 注册脚本 - 29 USDT</option>
+      <label for="script">选择脚本</label>
+      <select id="script" required>
+        <option value="">请选择脚本...</option>
+        <option value="telegram_register">Telegram 注册脚本 - 29 USDT</option>
+        <option value="tiktok_register">TikTok 注册脚本 - 29 USDT</option>
+        <option value="twitter_register">Twitter 注册脚本 - 29 USDT</option>
+        <option value="facebook_register">Facebook 注册脚本 - 29 USDT</option>
+        <option value="instagram_register">Instagram 注册脚本 - 29 USDT</option>
 
-      <option value="telegram_spammer">Telegram 群发脚本 - 39 USDT</option>
-      <option value="tiktok_spammer">TikTok 评论群发脚本 - 39 USDT</option>
-      <option value="twitter_poster">Twitter 批量发帖脚本 - 39 USDT</option>
-      <option value="facebook_spammer">Facebook 评论群发脚本 - 39 USDT</option>
-      <option value="instagram_spammer">Instagram 私信群发脚本 - 39 USDT</option>
-      <option value="telegram_scraper">Telegram 成员采集脚本 - 39 USDT</option>
+        <option value="telegram_spammer">Telegram 群发脚本 - 39 USDT</option>
+        <option value="tiktok_spammer">TikTok 评论群发脚本 - 39 USDT</option>
+        <option value="twitter_poster">Twitter 批量发帖脚本 - 39 USDT</option>
+        <option value="facebook_spammer">Facebook 评论群发脚本 - 39 USDT</option>
+        <option value="instagram_spammer">Instagram 私信脚本 - 39 USDT</option>
+        <option value="telegram_scraper">Telegram 成员采集脚本 - 39 USDT</option>
 
-      <option value="tiktok_live_ai">TikTok AI 无人直播脚本 - 49 USDT</option>
-    </select>
+        <option value="tiktok_ai">TikTok AI 无人直播脚本 - 49 USDT</option>
+      </select>
 
-    <button onclick="buyScript()">点击立即购买</button>
-
-    <p class="status" id="status"></p >
-
-    <div class="wallet-box">
-      <strong>收款地址（USDT - TRC20）：</strong><br>
-      TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB
-    </div>
+      <button type="submit">点击立即购买</button>
+    </form>
 
     <div class="footer">
-      推荐接码平台：sms-activate / 5sim / getsmscode（0.1/条）<br>
-      所有脚本含完整教程，支持长期使用，每个 ZIP 包内附带视频说明。
+      推荐接码平台：sms-activate / 5sim / getsmscode（低至 ¥0.1 / 条）<br />
+      所有脚本含详细说明教程，付款后永久可下载使用。
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    document.getElementById("buyForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const script = document.getElementById("script").value;
+
+      if (!email || !script) {
+        alert("请填写完整信息");
+        return;
+      }
+
+      const url = `pay.html?email=${encodeURIComponent(email)}&script=${encodeURIComponent(script)}`;
+      window.location.href = url;
+    });
+  </script>
 </body>
 </html>

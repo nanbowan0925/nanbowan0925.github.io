@@ -2,90 +2,63 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>自动注册 + 推广脚本合集 - 自动发货系统</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>自动注册 + 推广脚本合集</title>
   <style>
-    body { font-family: "Microsoft YaHei", sans-serif; background: #f4f4f4; margin: 0; padding: 20px; color: #333; }
-    .container { max-width: 850px; margin: auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    h1, h2, h3 { color: #222; }
-    .desc, .note { font-size: 15px; color: #555; line-height: 1.6; margin-bottom: 25px; }
-    label, select, input { font-size: 16px; margin: 10px 0; display: block; }
-    input[type="email"], select {
-      width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;
-    }
-    button {
-      padding: 12px 20px; font-size: 16px;
-      background-color: #28a745; border: none; color: #fff;
-      border-radius: 4px; cursor: pointer;
-    }
-    button:hover { background-color: #218838; }
+    body { font-family: "Microsoft Yahei", sans-serif; background: #f4f4f4; color: #333; padding: 30px; }
+    .container { max-width: 850px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    h1 { text-align: center; color: #222; }
+    h2 { margin-top: 40px; color: #444; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 10px; }
+    .highlight { color: #e91e63; font-weight: bold; }
+    .price { font-weight: bold; color: #4CAF50; }
+    .btn-box { text-align: center; margin-top: 40px; }
+    .btn { background: #4CAF50; color: white; padding: 14px 26px; border: none; font-size: 16px; border-radius: 6px; cursor: pointer; }
+    .btn:hover { background: #43a047; }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>自动注册 + 推广脚本合集</h1>
+    <p>所有脚本为独立自动化运行脚本，无需改代码，扫码付款后自动发货。</p >
+    <p>支持多平台注册 + 群发 + 采集 + 引流，持续更新维护。</p >
 
-    <div class="desc">
-      所有脚本均为实测可运行版本，<strong>非演示产品、不售空包</strong>。<br>
-      每套脚本内含详细使用说明文档（配置说明 / 运行方法 / 注意事项），支持直接运行或二次开发。<br>
-      <strong>脚本将不定时更新</strong>，如平台规则变更（验证码逻辑、接口机制等），将自动修复升级，确保持续可用。
-    </div>
-
-    <h2>专区一：自动注册脚本（29 USDT）</h2>
-    <div class="note">
-      提供可批量注册账号的自动化工具，适配各大接码平台，适用于账号矩阵起号、批量养号等场景。
-      支持 session 导出，可与群控系统或群发脚本直接配合使用。
-    </div>
-
+    <h2>专区一：自动注册脚本（<span class="price">29 USDT</span>）</h2>
     <ul>
-      <li>Telegram 自动注册脚本</li>
+      <li>Telegram 注册脚本</li>
       <li>TikTok 注册脚本</li>
       <li>Twitter 注册脚本</li>
       <li>Facebook 注册脚本</li>
       <li>Instagram 注册脚本</li>
     </ul>
 
-    <h2>专区二：推广 / 群发 / 数据采集脚本</h2>
-    <div class="note">
-      帮你将注册好的账号批量用起来，实现自动引流、自动群发、自动采集目标用户，适合引导用户加群、加 TG 机器人、跳转站点等变现模式。
-    </div>
-
+    <h2>专区二：推广 / 群发 / 数据采集脚本（<span class="price">39 USDT</span>）</h2>
     <ul>
-      <li>Telegram 自动群发脚本 - 39 USDT</li>
-      <li>TikTok 评论群发脚本 - 39 USDT</li>
-      <li>Twitter 私信 + 批量发帖脚本 - 39 USDT</li>
-      <li>Facebook 评论群发脚本 - 39 USDT</li>
-      <li>Instagram 私信群发脚本 - 39 USDT</li>
-      <li>Telegram 群成员采集脚本 - 39 USDT</li>
-      <li><strong>TikTok AI 无人直播脚本</strong>（自动开播 + AI弹幕回复） - <strong>49 USDT</strong></li>
+      <li>Telegram 自动群发脚本</li>
+      <li>TikTok 评论群发脚本</li>
+      <li>Twitter 私信 + 批量发帖脚本（自动引流）</li>
+      <li>Facebook 评论群发脚本</li>
+      <li>Instagram 私信群发脚本</li>
+      <li>Telegram 群成员采集脚本</li>
     </ul>
 
-    <form id="buyForm" action="/pay" method="GET">
-      <label for="script">请选择要购买的脚本：</label>
-      <select id="script" name="script" required>
-        <option value="">-- 请选择脚本 --</option>
-        <!-- 注册脚本（29 USDT） -->
-        <option value="telegram">Telegram 自动注册脚本</option>
-        <option value="tiktok">TikTok 注册脚本</option>
-        <option value="twitter">Twitter 注册脚本</option>
-        <option value="facebook">Facebook 注册脚本</option>
-        <option value="instagram">Instagram 注册脚本</option>
+    <h2>AI无人直播脚本（<span class="price">49 USDT</span>）</h2>
+    <ul>
+      <li>TikTok AI 无人直播脚本（自动开播 + 自动回复弹幕）</li>
+    </ul>
 
-        <!-- 推广 / 群发 / AI（39 / 49 USDT） -->
-        <option value="tg_spammer">Telegram 自动群发脚本</option>
-        <option value="tiktok_spammer">TikTok 评论群发脚本</option>
-        <option value="twitter_spammer">Twitter 私信 + 发帖脚本</option>
-        <option value="facebook_spammer">Facebook 评论群发脚本</option>
-        <option value="instagram_spammer">Instagram 私信群发脚本</option>
-        <option value="scraper">Telegram 群成员采集脚本</option>
-        <option value="tiktok_live_ai">TikTok AI 无人直播脚本（49 USDT）</option>
-      </select>
+    <p class="highlight">请点击下方按钮，填写邮箱并选择脚本，付款后系统将自动发送对应脚本：</p >
 
-      <label for="email">请输入您的收货邮箱：</label>
-      <input type="email" id="email" name="email" required placeholder="用于接收脚本 zip 包">
+    <div class="btn-box">
+      <button class="btn">点击立即购买</button>
+    </div>
 
-      <button type="submit">提交并跳转付款页面</button>
-    </form>
+    <p style="margin-top:30px; font-size:14px; color:#999;">
+      所有脚本需配合虚拟号平台使用，建议平台：<br>
+      sms-activate、5sim、getsmscode（价格低至 ¥0.1/条）<br>
+      脚本持续更新，购买后永久可用，每个 ZIP 包内含使用说明文档。
+    </p >
   </div>
 </body>
 </html>

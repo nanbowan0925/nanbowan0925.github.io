@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>自动脚本商城 - 付款页面</title>
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -38,6 +38,9 @@
       color: #888;
       font-size: 0.9em;
     }
+    .buy-button {
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -50,16 +53,19 @@
   <h2>请完成付款</h2>
 
   <div class="payment-details">
-    <p><strong>产品类型：</strong><span id="product"></span></p >
-    <p><strong>接收邮箱：</strong><span id="email"></span></p >
-    <p><strong>付款金额：</strong><span id="amount"></span></p >
-    <p><strong>USDT-TRC20 收款地址：</strong><span id="wallet">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</span></p >
-    <button onclick="copyWallet()" class="buy-button" style="margin: 10px 0;">复制收款地址</button>
+    <p><strong>产品类型：</strong><span id="product">加载中...</span></p >
+    <p><strong>接收邮箱：</strong><span id="email">加载中...</span></p >
+    <p><strong>付款金额：</strong><span id="amount">USDT</span></p >
   </div>
 
   <div class="qr-section">
-    <p>扫码付款：</p >
-    < img id="qr" src="" alt="付款二维码">
+    <p>推荐使用 TronLink 或 TokenPocket 扫码付款：</p >
+    <a id="qr-link" href=" " target="_blank">
+      < img id="qr" src="" alt="扫码支付二维码">
+    </a >
+    <p style="margin-top: 10px; font-size: 0.9em; color: #aaa;">或复制以下地址手动转账：</p >
+    <p><strong id="wallet">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</strong></p >
+    <button onclick="copyWallet()" class="buy-button">复制收款地址</button>
   </div>
 
   <div class="payment-details" style="margin-top: 30px;">
@@ -79,7 +85,12 @@
     return decodeURIComponent(url.searchParams.get(name) || "");
   }
 
-  // 显示产品信息
+  // 获取参数
+  const productKey = getParam("product");
+  const email = getParam("email");
+  const wallet = document.getElementById("wallet").textContent;
+
+  // 显示产品
   const productMap = {
     telegram_register: "Telegram 自动注册脚本",
     tiktok_register: "TikTok 自动注册脚本",
@@ -94,28 +105,25 @@
     tiktok_live_ai: "TikTok AI 无人直播挂机脚本"
   };
 
-  const productKey = getParam("product");
-  const email = getParam("email");
-
   document.getElementById("product").textContent = productMap[productKey] || productKey;
   document.getElementById("email").textContent = email;
 
-  // 金额判断
-  let price = "待确认";
-  if (productKey.includes("register")) price = "29 USDT";
-  else if (productKey.includes("spam")) price = "39 USDT";
-  else if (productKey.includes("live_ai")) price = "49 USDT";
-  document.getElementById("amount").textContent = price;
+  // 设置金额
+  let amountValue = "0";
+  if (productKey.includes("register")) amountValue = "29";
+  else if (productKey.includes("spam")) amountValue = "39";
+  else if (productKey.includes("live_ai")) amountValue = "49";
+  document.getElementById("amount").textContent = `${amountValue} USDT`;
 
-  // 动态生成二维码
-  const wallet = document.getElementById("wallet").textContent;
-  const qrUrl = `https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${wallet}`;
+  // 设置二维码（扫码带金额 + 备注）
+  const tronTransferUrl = `tron:${wallet}?amount=${amountValue}&message=${productKey}-${email}`;
+  const qrUrl = `https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${encodeURIComponent(tronTransferUrl)}`;
   document.getElementById("qr").src = qrUrl;
+  document.getElementById("qr-link").href = tronTransferUrl;
 
-  // 复制收款地址
   function copyWallet() {
     navigator.clipboard.writeText(wallet).then(() => {
-      alert("收款地址已复制！");
+      alert("钱包地址已复制！");
     });
   }
 </script>

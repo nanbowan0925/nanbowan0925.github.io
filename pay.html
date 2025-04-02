@@ -1,167 +1,78 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>确认付款并发货</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a1a1a);
-      background-size: 600% 600%;
-      animation: bgShift 20s ease infinite;
-      color: #fff;
-    }
-
-    @keyframes bgShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .container {
-      max-width: 700px;
-      margin: 60px auto;
-      background: rgba(255, 255, 255, 0.06);
-      padding: 50px;
-      border-radius: 20px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(10px);
-    }
-
-    h1 {
-      font-size: 28px;
-      color: #00e5ff;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    p {
-      font-size: 16px;
-      line-height: 1.8;
-      margin-bottom: 20px;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      color: #111;
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: inset 0 0 10px rgba(0,255,255,0.2);
-    }
-
-    button {
-      width: 100%;
-      padding: 16px;
-      background: linear-gradient(135deg, #ff9800, #ffc107);
-      color: white;
-      font-size: 18px;
-      border: none;
-      border-radius: 12px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 25px;
-      transition: all 0.25s ease-in-out;
-      box-shadow: 0 4px 20px rgba(255, 165, 0, 0.3);
-    }
-
-    button:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 28px rgba(255, 165, 0, 0.5);
-    }
-
-    .footer {
-      margin-top: 40px;
-      text-align: center;
-      color: #ccc;
-      font-size: 13px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>付款确认 - 自动注册推广脚本商城</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>确认付款并自动发货</h1>
 
-    <p>你选择购买的脚本为：<strong id="scriptName">正在加载…</strong></p >
-    <p>发货邮箱为：<strong id="userEmail">正在加载…</strong></p >
+<header class="header">
+  <h1>确认支付并填写订单信息</h1>
+  <p>请在 30 分钟内完成付款并提交交易哈希</p >
+</header>
 
-    <p>请复制以下收款地址，使用任意钱包转账：</p >
-    <p><strong>USDT（TRC20）地址：</strong><br>
-    <code style="font-size: 16px;">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</code></p >
+<section class="section">
+  <div class="card">
+    <h3>您选择的脚本类型：</h3>
+    <p id="productName" style="font-size: 1.2em; color: #00ffe5;">加载中...</p >
 
-    <p>价格：<strong id="priceAmount">29 USDT</strong></p >
+    <h3>系统收款地址（USDT-TRC20）</h3>
+    <p style="word-break: break-all; color: #fff;">
+      <strong id="walletAddress">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</strong>
+    </p >
+    <button class="buy-button" onclick="copyAddress()">复制地址</button>
 
-    <p>转账完成后，请将你的交易哈希填写下方：</p >
-    <input type="text" id="txHash" placeholder="请输入你的交易哈希…" />
+    <br><br>
+    < img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB" alt="扫码付款" style="max-width: 200px; border: 2px solid #00ffe5; border-radius: 8px; margin-top: 20px;">
 
-    <button onclick="submitHash()">提交哈希并检测到账</button>
+    <br><br><br>
+    <label for="txid"><strong>付款后请填写订单哈希（Transaction ID）：</strong></label><br>
+    <input type="text" id="txid" placeholder="填写链上交易哈希 TxID" style="padding: 10px; margin-top: 10px; width: 100%; border-radius: 6px; border: 1px solid #00ffe5; background: #111; color: #fff;">
 
-    <div class="footer">
-      系统会自动监听链上记录，检测到账后会立刻将脚本 ZIP 包发送到你的邮箱
-    </div>
+    <br><br>
+    <button class="buy-button" onclick="submitOrder()">我已付款，提交订单</button>
   </div>
+</section>
 
-  <script>
-    // 获取 URL 参数
-    function getParam(name) {
-      const url = new URL(window.location.href);
-      return url.searchParams.get(name);
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const product = urlParams.get('product') || '';
+  const email = urlParams.get('email') || '';
+  const productMap = {
+    telegram_register: 'Telegram 自动注册脚本',
+    tiktok_register: 'TikTok 自动注册脚本',
+    twitter_register: 'Twitter 自动注册脚本',
+    instagram_register: 'Instagram 自动注册脚本',
+    facebook_register: 'Facebook 自动注册脚本',
+    telegram_spam: 'Telegram 群发推广脚本',
+    tiktok_spam: 'TikTok 群发推广脚本',
+    twitter_spam: 'Twitter 群发脚本',
+    tiktok_live: 'TikTok AI 无人直播脚本'
+  };
+  document.getElementById("productName").innerText = productMap[product] || "未知脚本";
+
+  function copyAddress() {
+    const address = document.getElementById("walletAddress").innerText;
+    navigator.clipboard.writeText(address);
+    alert("钱包地址已复制");
+  }
+
+  function submitOrder() {
+    const txid = document.getElementById("txid").value.trim();
+    if (!txid || txid.length < 20) {
+      alert("请输入有效的链上哈希 TxID！");
+      return;
     }
+    // 提交至监听脚本处理页面，可修改为真实处理接口
+    window.location.href = `confirm.html?product=${product}&email=${encodeURIComponent(email)}&txid=${encodeURIComponent(txid)}`;
+  }
+</script>
 
-    const script = getParam("script");
-    const email = getParam("email");
+<footer class="footer">
+  <p>© 2025 自动注册与推广脚本商城｜安全支付｜系统自动发货</p >
+</footer>
 
-    const scriptNameMap = {
-      telegram_register: "Telegram 注册脚本",
-      tiktok_register: "TikTok 注册脚本",
-      twitter_register: "Twitter 注册脚本",
-      facebook_register: "Facebook 注册脚本",
-      instagram_register: "Instagram 注册脚本",
-
-      telegram_spammer: "Telegram 群发脚本",
-      tiktok_comment: "TikTok 评论群发脚本",
-      twitter_poster: "Twitter 发帖 + 私信脚本",
-      facebook_comment: "Facebook 评论群发脚本",
-      instagram_dm: "Instagram 私信群发脚本",
-      telegram_scraper: "Telegram 成员采集脚本",
-
-      tiktok_ai_live: "TikTok AI 无人直播脚本"
-    };
-
-    const priceMap = {
-      telegram_register: 29,
-      tiktok_register: 29,
-      twitter_register: 29,
-      facebook_register: 29,
-      instagram_register: 29,
-      telegram_spammer: 39,
-      tiktok_comment: 39,
-      twitter_poster: 39,
-      facebook_comment: 39,
-      instagram_dm: 39,
-      telegram_scraper: 39,
-      tiktok_ai_live: 49
-    };
-
-    document.getElementById("scriptName").innerText = scriptNameMap[script] || "未知脚本";
-    document.getElementById("userEmail").innerText = email || "未填写邮箱";
-    document.getElementById("priceAmount").innerText = `${priceMap[script] || "--"} USDT`;
-
-    function submitHash() {
-      const hash = document.getElementById("txHash").value.trim();
-      if (!hash) {
-        alert("请填写交易哈希");
-        return;
-      }
-      alert("已提交交易哈希：" + hash + "\n系统将自动检测链上到账记录，请稍等...");
-      // 后续监听逻辑由机器人或服务端继续处理
-    }
-  </script>
 </body>
 </html>

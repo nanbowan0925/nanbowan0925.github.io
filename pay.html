@@ -23,15 +23,6 @@
       font-size: 1.1em;
       margin-bottom: 10px;
     }
-    .qr-section {
-      text-align: center;
-      margin-top: 30px;
-    }
-    .qr-section img {
-      width: 200px;
-      border: 2px solid #00ffe5;
-      border-radius: 8px;
-    }
     .footer-text {
       text-align: center;
       margin-top: 50px;
@@ -40,6 +31,14 @@
     }
     .buy-button {
       margin-top: 10px;
+    }
+    .wallet-box {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(0,255,255,0.1);
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -58,13 +57,9 @@
     <p><strong>付款金额：</strong><span id="amount">USDT</span></p >
   </div>
 
-  <!-- ✅ 正确的二维码区域 -->
-  <div class="qr-section">
-    <p>推荐使用 TronLink 或 TokenPocket 扫码付款：</p >
-    <a id="qr-link" href=" " target="_blank">
-      < img id="qr" src="" alt="扫码支付二维码">
-    </a >
-    <p style="margin-top: 10px; font-size: 0.9em; color: #aaa;">或复制以下地址手动转账：</p >
+  <!-- 收款地址展示 -->
+  <div class="wallet-box">
+    <p>请将 USDT (TRC20) 转账至以下地址：</p >
     <p><strong id="wallet">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</strong></p >
     <button onclick="copyWallet()" class="buy-button">复制收款地址</button>
   </div>
@@ -87,12 +82,10 @@
     return decodeURIComponent(url.searchParams.get(name) || "");
   }
 
-  // 获取参数
   const productKey = getParam("product");
   const email = getParam("email");
   const wallet = document.getElementById("wallet").textContent;
 
-  // 显示产品
   const productMap = {
     telegram_register: "Telegram 自动注册脚本",
     tiktok_register: "TikTok 自动注册脚本",
@@ -110,18 +103,11 @@
   document.getElementById("product").textContent = productMap[productKey] || productKey;
   document.getElementById("email").textContent = email;
 
-  // 设置金额
   let amountValue = "0";
   if (productKey.includes("register")) amountValue = "29";
   else if (productKey.includes("spam")) amountValue = "39";
   else if (productKey.includes("live_ai")) amountValue = "49";
   document.getElementById("amount").textContent = `${amountValue} USDT`;
-
-  // 设置二维码（扫码带金额 + 备注）
-  const tronTransferUrl = `tron:${wallet}?amount=${amountValue}&message=${productKey}-${email}`;
-  const qrUrl = `https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${encodeURIComponent(tronTransferUrl)}`;
-  document.getElementById("qr").src = qrUrl;
-  document.getElementById("qr-link").href = tronTransferUrl;
 
   function copyWallet() {
     navigator.clipboard.writeText(wallet).then(() => {

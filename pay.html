@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>等待付款 - 自动发货</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>请完成 USDT 付款</h1>
+
+    <p>您的邮箱：<strong id="email">加载中...</strong></p >
+    <p>所购脚本：<strong id="script">加载中...</strong></p >
+
+    <h3>付款地址（TRC20）：</h3>
+    <div class="wallet-box">
+      <p id="wallet">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</p >
+      < img src="https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB" alt="USDT QR Code" width="200">
+    </div>
+
+    <p class="tip">请复制付款地址或扫码支付（USDT - TRC20 网络），付款后请输入交易哈希：</p >
+
+    <form id="hashForm">
+      <label for="txid">交易哈希：</label><br>
+      <input type="text" id="txid" name="txid" placeholder="例如：3f97a1d7..." required><br><br>
+      <button type="submit">提交并检测到账</button>
+    </form>
+
+    <p id="status" class="status">等待检测付款中...</p >
+  </div>
+
+  <script>
+    // 读取 URL 参数
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email');
+    const script = urlParams.get('script');
+
+    document.getElementById("email").textContent = email || '未知';
+    document.getElementById("script").textContent = script || '未知';
+
+    const priceMap = {
+      telegram_register: 29,
+      tiktok_register: 29,
+      twitter_register: 29,
+      facebook_register: 29,
+      instagram_register: 29,
+      telegram_spammer: 39,
+      tiktok_comment: 39,
+      twitter_spammer: 39,
+      facebook_comment: 39,
+      instagram_dm: 39,
+      telegram_scraper: 39,
+      tiktok_ai_live: 49
+    };
+
+    const requiredAmount = priceMap[script] || 29;
+
+    document.getElementById("hashForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const txid = document.getElementById("txid").value.trim();
+      if (!txid) return alert("请输入交易哈希");
+
+      document.getElementById("status").textContent = "正在验证交易，请稍候...";
+
+      // 发请求检查是否到账（使用 TronGrid API 示例）
+      fetch(`https://api.trongrid.io/v1/transactions/${txid}`)
+        .then(res => res.json())
+        .then(data => {
+          const tx = data.data?.[0];
+          if (!tx || !tx.raw_data) throw new Error("未找到交易");
+
+          const amount = tx.raw_data.contract[0].parameter.value.amount / 1e6;
+          const to = tx.raw_data.contract[0].parameter.value.to_address;
+          const hexAddress = atob("TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB");
+
+          // 判断收款地址和金额
+          if (tx.ret[0].contractRet === "SUCCESS" && amount >= requiredAmount) {
+            document.getElementById("status").textContent = "到账成功，正在发送脚本...";
+
+            // 模拟发货（你可接入真实 API 发货逻辑）
+            setTimeout(() => {
+              alert(`脚本已发送至邮箱：${email}`);
+              document.getElementById("status").textContent = "脚本发送成功，请查收邮件（如未收到请查垃圾箱）";
+            }, 2000);
+          } else {
+            document.getElementById("status").textContent = "付款信息不匹配，请确认金额和收款地址。";
+          }
+        })
+        .catch(err => {
+          document.getElementById("status").textContent = "检测失败，请确认交易哈希是否正确";
+        });
+    });
+  </script>
+</body>
+</html>

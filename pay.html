@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <title>立即购买 - 自动注册与群发脚本</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>购买脚本 - 自动注册 + 群发合集</title>
   <style>
     body {
       font-family: "Microsoft YaHei", sans-serif;
-      background-color: #f9f9f9;
-      padding: 40px;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 30px;
       color: #333;
     }
     .container {
@@ -15,8 +17,8 @@
       margin: auto;
       background: #fff;
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
     }
     h2 {
       text-align: center;
@@ -25,21 +27,22 @@
     label {
       display: block;
       margin: 20px 0 8px;
+      font-weight: bold;
     }
     input, select {
       width: 100%;
       padding: 12px;
-      font-size: 16px;
+      font-size: 15px;
       border: 1px solid #ccc;
       border-radius: 6px;
     }
     button {
-      margin-top: 25px;
       width: 100%;
       background: #4CAF50;
       color: white;
       padding: 14px;
-      font-size: 18px;
+      margin-top: 25px;
+      font-size: 17px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
@@ -48,54 +51,56 @@
       background: #45a049;
     }
     .info {
-      font-size: 14px;
-      color: #888;
       margin-top: 10px;
+      font-size: 14px;
+      color: #666;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>填写邮箱并选择要购买的脚本</h2>
-    
-    <label for="email">收货邮箱</label>
-    <input type="email" id="email" placeholder="请输入邮箱地址">
+    <h2>购买自动注册 / 群发脚本</h2>
+    <label for="email">收货邮箱地址</label>
+    <input type="email" id="email" placeholder="请输入您的邮箱">
 
-    <label for="script">选择脚本</label>
+    <label for="script">选择需要的脚本</label>
     <select id="script">
+      <option value="">-- 请选择脚本 --</option>
       <option value="telegram_register">Telegram 注册脚本 - 29 USDT</option>
       <option value="tiktok_register">TikTok 注册脚本 - 29 USDT</option>
       <option value="twitter_register">Twitter 注册脚本 - 29 USDT</option>
       <option value="facebook_register">Facebook 注册脚本 - 29 USDT</option>
       <option value="instagram_register">Instagram 注册脚本 - 29 USDT</option>
-      <option value="telegram_spammer">Telegram 群发脚本 - 39 USDT</option>
+      <option value="telegram_spam">Telegram 群发脚本 - 39 USDT</option>
       <option value="tiktok_comment">TikTok 评论脚本 - 39 USDT</option>
-      <option value="twitter_poster">Twitter 批量发帖脚本 - 39 USDT</option>
+      <option value="twitter_post">Twitter 批量发帖脚本 - 39 USDT</option>
       <option value="facebook_comment">Facebook 评论脚本 - 39 USDT</option>
       <option value="instagram_dm">Instagram 私信脚本 - 39 USDT</option>
-      <option value="tg_member_grabber">Telegram 成员采集脚本 - 39 USDT</option>
-      <option value="tiktok_ai_live">TikTok AI 无人直播脚本（自动回复） - 49 USDT</option>
+      <option value="tg_grabber">Telegram 成员采集脚本 - 39 USDT</option>
+      <option value="tiktok_ai">TikTok AI 无人直播脚本（自动回复弹幕） - 49 USDT</option>
     </select>
 
-    <button onclick="goToPayment()">点击立即支付</button>
+    <button onclick="pay()">点击前往支付</button>
 
     <div class="info">
-      支持 USDT(TRC20) 钱包扫码支付，支付完成后自动发送对应脚本。
+      支持 USDT(TRC20) 钱包支付，支付完成后系统将自动发送脚本 ZIP 文件到你填写的邮箱地址。
     </div>
   </div>
 
   <script>
-    function goToPayment() {
-      const email = document.getElementById("email").value.trim();
-      const script = document.getElementById("script").value;
+    function pay() {
+      const email = document.getElementById('email').value.trim();
+      const script = document.getElementById('script').value;
 
       if (!email || !script) {
-        alert("请填写邮箱并选择脚本");
+        alert('请填写邮箱并选择脚本');
         return;
       }
 
-      const payUrl = `https://your-domain.com/pay?email=${encodeURIComponent(email)}&script=${script}`;
-      window.location.href = payUrl;
+      const encodedEmail = encodeURIComponent(email);
+      const encodedScript = encodeURIComponent(script);
+
+      window.location.href = `https://naobowan.pages.dev/pay?email=${encodedEmail}&script=${encodedScript}`;
     }
   </script>
 </body>

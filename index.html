@@ -3,20 +3,158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>全自动注册 + 引流 + 推广脚本商城</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>自动注册 + 群发脚本商城</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a1a1a);
+      background-size: 600% 600%;
+      animation: bgShift 18s ease infinite;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 50px 60px;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      animation: fadeInUp 0.8s ease;
+      transition: all 0.3s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 34px;
+      color: #ffffff;
+      margin-bottom: 30px;
+    }
+    h2 {
+      font-size: 22px;
+      margin-top: 50px;
+      color: #00e5ff;
+      border-left: 4px solid #00e5ff;
+      padding-left: 12px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px 16px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 16px;
+      color: #111; /* 黑色字体 */
+      box-shadow: inset 0 0 10px rgba(0,255,255,0.2);
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #4CAF50, #66bb6a);
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 35px;
+      transition: all 0.25s ease-in-out;
+      box-shadow: 0 4px 20px rgba(0, 255, 128, 0.3);
+    }
+
+    button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0, 255, 128, 0.5);
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 15px;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+      font-size: 17px;
+      padding-left: 25px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: "✔️";
+      position: absolute;
+      left: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+      color: #fff;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+    }
+
+    th {
+      background: rgba(0, 255, 255, 0.15);
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.04);
+    }
+
+    tr:hover {
+      background-color: rgba(0, 255, 255, 0.08);
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #ccc;
+      text-align: center;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>全自动注册 + 引流 + 推广脚本合集</h1>
+    <h1>自动注册 + 群发引流脚本合集</h1>
     <p style="text-align:center; color:#ccc;">
-      一次购买，永久使用，支持 10+ 脚本组合打包
+      注册账号、批量引流、自动开播，全部一键完成，一次购买永久使用
     </p >
 
-    <!-- 表单模块 -->
     <form id="buyForm">
       <label for="email">接收邮箱</label>
-      <input type="email" id="email" placeholder="请输入你的邮箱，用于接收脚本 ZIP 包" required />
+      <input type="email" id="email" placeholder="请输入邮箱接收 ZIP 脚本包" required />
 
       <label for="script">选择脚本</label>
       <select id="script" required>
@@ -26,114 +164,41 @@
         <option value="twitter_register">Twitter 注册脚本 - 29 USDT</option>
         <option value="facebook_register">Facebook 注册脚本 - 29 USDT</option>
         <option value="instagram_register">Instagram 注册脚本 - 29 USDT</option>
-
         <option value="telegram_spammer">Telegram 群发脚本 - 39 USDT</option>
         <option value="tiktok_comment">TikTok 评论群发脚本 - 39 USDT</option>
         <option value="twitter_poster">Twitter 发帖 + 私信脚本 - 39 USDT</option>
         <option value="facebook_comment">Facebook 评论群发脚本 - 39 USDT</option>
         <option value="instagram_dm">Instagram 私信群发脚本 - 39 USDT</option>
         <option value="telegram_scraper">Telegram 成员采集脚本 - 39 USDT</option>
-
         <option value="tiktok_ai_live">TikTok AI 无人直播脚本 - 49 USDT</option>
       </select>
 
       <button type="submit">立即购买</button>
     </form>
 
-    <!-- 购买后您将获得什么 -->
-    <h2>购买后您将获得什么？</h2>
-    <ul>
-      <li>📦 一个脚本压缩包（ZIP），内含：</li>
-      <ul>
-        <li>📜 脚本源文件（Python）</li>
-        <li>📖 中文图文教程（含使用说明、路径截图）</li>
-        <li>🔗 已集成接码平台 API 示例</li>
-        <li>💾 输出文件夹：自动保存注册后的账号信息</li>
-      </ul>
-      <li>🔄 持续免费更新（通过原邮箱推送新版）</li>
-    </ul>
+    <div class="footer">
+      支付完成后系统自动识别 TRC20 转账并立即发货，<br>
+      所有脚本为永久使用版本，压缩包内包含完整教程。
+    </div>
+  </div>
 
-    <!-- 脚本适合哪些人 -->
-    <h2>脚本适合哪些人？</h2>
-    <ul>
-      <li>🚀 想大批量注册平台账号用于营销的人</li>
-      <li>🛠️ 想快速搭建自己的推广系统但缺少技术基础的人</li>
-      <li>📈 正在运营 Telegram / TikTok / Twitter 私域流量池的人</li>
-      <li>🤖 想通过无人直播、注册拉新、群发私信获取客户的人</li>
-      <li>⏳ 不想依赖第三方买号、不想天天重复操作的人</li>
-    </ul>
+  <!-- 表单提交 + 弹窗通知 -->
+  <script>
+    window.onload = function () {
+      alert("此网站售卖的脚本为永久使用，需要电脑本地运行脚本，按 Win + R 输入 cmd 后执行脚本即可。");
+    };
 
-    <!-- 脚本优势对比 -->
-    <h2>脚本优势对比</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>项目</th>
-          <th>本站脚本</th>
-          <th>自己写脚本 / 免费工具</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>支持平台</td>
-          <td>Telegram、TikTok 等</td>
-          <td>单一平台或不稳定</td>
-        </tr>
-        <tr>
-          <td>账号保存</td>
-          <td>自动输出到 txt 文件</td>
-          <td>需手动记录</td>
-        </tr>
-        <tr>
-          <td>更新维护</td>
-          <td>自动推送 / 免费更新</td>
-          <td>无维护 / 自己查错</td>
-        </tr>
-        <tr>
-          <td>接码平台支持</td>
-          <td>内置接口，一键调用</td>
-          <td>需单独申请、调试</td>
-        </tr>
-        <tr>
-          <td>使用难度</td>
-          <td>有中文教程、傻瓜式</td>
-          <td>需编程基础</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- 典型使用场景 -->
-    <h2>典型使用场景</h2>
-    <ul>
-      <li>📲 用注册脚本每天运行 200 个 Telegram 账号，接入引流机器人</li>
-      <li>🎥 使用 TikTok 无人直播脚本挂视频 24 小时吸引流量</li>
-      <li>🐦 将注册好的 Twitter 账号导入群发模块，批量自动发帖</li>
-      <li>📘 Facebook 注册 + 私信脚本，用于定向引导 WhatsApp</li>
-      <li>📸 Instagram 评论脚本 + 采集脚本，套娃式推广拉新</li>
-    </ul>
-
-    <!-- 常见问题 FAQ -->
-    <h2>常见问题 FAQ</h2>
-    <ul>
-      <li>
-        <strong>Q：付款后多久能收到脚本？</strong><br>
-        A：系统自动监听 TRC20 收款，确认到账立即发货 ZIP 包，无需等待。
-      </li>
-      <li>
-        <strong>Q：购买后是不是永久使用？有时间限制吗？</strong><br>
-        A：全部脚本永久有效，版本更新后原邮箱也会收到新版。
-      </li>
-      <li>
-        <strong>Q：使用时需要服务器吗？</strong><br>
-        A：不强制。脚本支持本地电脑运行（Win + R → CMD），也可部署到 VPS 无限挂机。
-      </li>
-      <li>
-        <strong>Q：我不会 Python 怎么办？</strong><br>
-        A：脚本内含中文教程，只需复制粘贴，不需要写代码
-<script>
-  window.onload = function () {
-    alert("此网站售卖的脚本为永久使用，需要电脑本地运行脚本，按 Win + R 输入 cmd 后执行脚本即可。");
-  };
-</script>
+    document.getElementById("buyForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const script = document.getElementById("script").value;
+      if (!email || !script) {
+        alert("请填写完整信息");
+        return;
+      }
+      const url = `pay.html?email=${encodeURIComponent(email)}&script=${encodeURIComponent(script)}`;
+      window.location.href = url;
+    });
+  </script>
 </body>
 </html>

@@ -1,103 +1,124 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>付款页面 - 自动脚本商城</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>自动脚本商城 - 付款页面</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    /* 针对付款页面的额外样式 */
-    .payment-container {
+    .payment-box {
       max-width: 800px;
-      margin: 50px auto;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
+      margin: 60px auto;
+      background: rgba(255,255,255,0.05);
+      padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0,255,255,0.2);
     }
-    .payment-header {
+    .payment-box h2 {
       text-align: center;
-      margin-bottom: 20px;
-    }
-    .payment-header h2 {
       color: #00ffe5;
-      text-shadow: 0 0 10px #00ffe5;
-    }
-    .payment-info {
-      font-size: 1.1em;
-      line-height: 1.6;
       margin-bottom: 20px;
     }
-    .qr-code {
-      text-align: center;
-      margin: 30px 0;
+    .payment-details p {
+      font-size: 1.1em;
+      margin-bottom: 10px;
     }
-    .qr-code img {
-      max-width: 200px;
+    .qr-section {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .qr-section img {
+      width: 200px;
+      border: 2px solid #00ffe5;
+      border-radius: 8px;
     }
     .footer-text {
       text-align: center;
+      margin-top: 50px;
+      color: #888;
       font-size: 0.9em;
-      color: #aaa;
-      margin-top: 30px;
     }
   </style>
 </head>
 <body>
-  <!-- 顶部导航标题 -->
-  <header class="header">
-    <h1>自动脚本商城 - 付款页面</h1>
-  </header>
 
-  <!-- 付款信息区域 -->
-  <div class="payment-container">
-    <div class="payment-header">
-      <h2>请完成付款</h2>
-      <p>订单详情如下：</p >
-    </div>
-    <!-- 显示产品与邮箱信息 -->
-    <div class="payment-info">
-      <p><strong>产品类型：</strong><span id="product-info">未选择</span></p >
-      <p><strong>接收邮箱：</strong><span id="email-info">未提供</span></p >
-      <p><strong>付款金额：</strong><span id="amount-info">待确认</span></p >
-    </div>
-    <!-- 二维码支付区 -->
-    <div class="qr-code">
-      <p>请使用支付工具扫描下方二维码完成付款</p >
-      < img src="https://via.placeholder.com/200?text=QR+Code" alt="付款二维码">
-    </div>
-    <!-- 支付说明 -->
-    <div class="payment-info">
-      <p>付款成功后，系统将自动将脚本发送至您提供的邮箱。若长时间未收到邮件，请及时联系我们的客服。</p >
-    </div>
+<header class="header">
+  <h1>自动脚本商城 - 付款页面</h1>
+</header>
+
+<div class="payment-box">
+  <h2>请完成付款</h2>
+
+  <div class="payment-details">
+    <p><strong>产品类型：</strong><span id="product"></span></p >
+    <p><strong>接收邮箱：</strong><span id="email"></span></p >
+    <p><strong>付款金额：</strong><span id="amount"></span></p >
+    <p><strong>USDT-TRC20 收款地址：</strong><span id="wallet">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</span></p >
+    <button onclick="copyWallet()" class="buy-button" style="margin: 10px 0;">复制收款地址</button>
   </div>
 
-  <!-- 页脚 -->
-  <footer class="footer-text">
-    <p>© 2025 自动脚本商城 - 所有权利保留</p >
-  </footer>
+  <div class="qr-section">
+    <p>扫码付款：</p >
+    < img id="qr" src="" alt="付款二维码">
+  </div>
 
-  <script>
-    // 从URL中获取参数并显示订单信息
-    function getQueryParam(param) {
-      let urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param) || "";
-    }
-    
-    document.getElementById('product-info').textContent = getQueryParam('product');
-    document.getElementById('email-info').textContent = getQueryParam('email');
-    
-    // 根据产品类型设置付款金额
-    let product = getQueryParam('product');
-    let amount = "待确认";
-    if(product.includes("register")) {
-      amount = "29 USDT";
-    } else if(product.includes("spam")) {
-      amount = "39 USDT";
-    } else if(product.includes("live_ai")) {
-      amount = "49 USDT";
-    }
-    document.getElementById('amount-info').textContent = amount;
-  </script>
+  <div class="payment-details" style="margin-top: 30px;">
+    <p>付款完成后，请填写链上交易哈希（TxID）：</p >
+    <input type="text" id="txid" placeholder="输入交易哈希 TxID" style="width: 100%; padding: 10px; border-radius: 6px; margin-bottom: 10px;">
+    <button class="buy-button">我已付款，提交订单</button>
+  </div>
+</div>
+
+<div class="footer-text">
+  <p>© 2025 自动脚本商城 - 所有权利保留</p >
+</div>
+
+<script>
+  function getParam(name) {
+    const url = new URL(window.location.href);
+    return decodeURIComponent(url.searchParams.get(name) || "");
+  }
+
+  // 显示产品信息
+  const productMap = {
+    telegram_register: "Telegram 自动注册脚本",
+    tiktok_register: "TikTok 自动注册脚本",
+    twitter_register: "Twitter 自动注册脚本",
+    instagram_register: "Instagram 自动注册脚本",
+    facebook_register: "Facebook 自动注册脚本",
+    telegram_spam: "Telegram 群发引流脚本",
+    tiktok_spam: "TikTok 群发评论脚本",
+    twitter_spam: "Twitter 推广群发脚本",
+    facebook_spam: "Facebook 自动发帖脚本",
+    instagram_spam: "Instagram 自动推广脚本",
+    tiktok_live_ai: "TikTok AI 无人直播挂机脚本"
+  };
+
+  const productKey = getParam("product");
+  const email = getParam("email");
+
+  document.getElementById("product").textContent = productMap[productKey] || productKey;
+  document.getElementById("email").textContent = email;
+
+  // 金额判断
+  let price = "待确认";
+  if (productKey.includes("register")) price = "29 USDT";
+  else if (productKey.includes("spam")) price = "39 USDT";
+  else if (productKey.includes("live_ai")) price = "49 USDT";
+  document.getElementById("amount").textContent = price;
+
+  // 动态生成二维码
+  const wallet = document.getElementById("wallet").textContent;
+  const qrUrl = `https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${wallet}`;
+  document.getElementById("qr").src = qrUrl;
+
+  // 复制收款地址
+  function copyWallet() {
+    navigator.clipboard.writeText(wallet).then(() => {
+      alert("收款地址已复制！");
+    });
+  }
+</script>
+
 </body>
 </html>

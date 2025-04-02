@@ -13,7 +13,7 @@
   <div class="popup-content">
     <h2>重要提示</h2>
     <p>本脚本为【永久使用】，非手机 App，仅限电脑本地运行。<br>
-       使用方法：<strong>Win + R → 输入 cmd → 执行脚本</strong><br><br>
+       使用方式：<strong>Win + R → 输入 cmd → 执行脚本</strong><br><br>
        支持虚拟号平台注册（sms-activate、5sim、getsmscode）。</p >
     <button onclick="closePopup()">我已知晓</button>
   </div>
@@ -30,86 +30,115 @@
 
 <!-- 顶部导航栏 -->
 <header class="header">
-  <h1>全球最强自动注册与推广脚本商城</h1>
-  <p>快速引流 + 自动注册 + 推广变现，一站式解决方案</p >
+  <h1>多平台自动注册与推广脚本商城</h1>
+  <p>全自动注册 + 群发引流 + 无人直播，一站搞定</p >
 </header>
 
 <!-- 顶部 Banner -->
 <section class="banner">
-  <h2>无需技术，一键启动自动赚钱系统</h2>
-  <p>适用于 Telegram / TikTok / Twitter / Facebook / Instagram 等平台</p >
+  <h2>一键启动，批量搞钱项目自动化</h2>
+  <p>Telegram / TikTok / Twitter / Facebook / Instagram 全平台支持</p >
 </section>
 
-<!-- 专区1：自动注册脚本 -->
+<!-- 产品选择区 -->
 <section class="section">
-  <h2>专区一：自动注册脚本（29 USDT）</h2>
+  <h2>选择你需要的脚本类型</h2>
   <div class="card">
-    <h3>支持平台</h3>
-    <ul>
-      <li>Telegram 自动注册脚本</li>
-      <li>TikTok 海外版自动注册</li>
-      <li>Twitter / Instagram / Facebook 注册全自动化</li>
-    </ul>
-    <p>配套支持验证码平台（sms-activate、5sim 等），注册成功的账号自动保存，适合账号起量、批量项目、套利系统使用。</p >
-    <button class="buy-button" onclick="window.location.href='pay.html?product=register'">立即购买（29 USDT）</button>
+    <label for="script-select">脚本类型：</label>
+    <select id="script-select">
+      <option value="register">自动注册脚本（29 USDT）</option>
+      <option value="promote">群发引流脚本（39 USDT）</option>
+      <option value="tiktok_live">TikTok 无人直播脚本（49 USDT）</option>
+    </select>
+
+    <label for="email-input" style="margin-top: 20px; display: block;">收货邮箱：</label>
+    <input type="email" id="email-input" placeholder="请输入你常用的邮箱地址" required />
+
+    <button class="buy-button" onclick="submitOrder()">立即购买</button>
   </div>
 </section>
 
-<!-- 专区2：推广脚本 + TikTok无人直播 -->
+<script>
+  function submitOrder() {
+    const script = document.getElementById('script-select').value;
+    const email = document.getElementById('email-input').value.trim();
+    if (!email || !email.includes('@')) {
+      alert('请填写正确的邮箱地址以接收脚本！');
+      return;
+    }
+    const url = `pay.html?product=${encodeURIComponent(script)}&email=${encodeURIComponent(email)}`;
+    window.location.href = url;
+  }
+</script>
+
+<!-- 产品说明模块 -->
 <section class="section">
-  <h2>专区二：自动推广与采集脚本合集（39 USDT）</h2>
+  <h2>产品说明与使用场景</h2>
+
   <div class="card">
-    <h3>脚本包含</h3>
+    <h3>自动注册脚本（支持多平台）</h3>
+    <p>适用于批量创建 Telegram / TikTok / Twitter / IG / Facebook 等平台账号，适配虚拟号平台。</p >
     <ul>
-      <li>多平台自动群发私信 / 评论（支持关键词）</li>
-      <li>自动采集目标群体并推送引流</li>
-      <li>Telegram / TikTok / Instagram 营销自动化</li>
+      <li>支持验证码平台（sms-activate、getsmscode）</li>
+      <li>注册成功后账号自动保存为 txt 文件</li>
+      <li>适用于套利脚本、灰产引流、量产养号</li>
     </ul>
-    <p>适合做产品推广、黑科技引流、批量导流项目。</p >
-    <button class="buy-button" onclick="window.location.href='pay.html?product=promote'">立即购买（39 USDT）</button>
   </div>
 
   <div class="card">
-    <h3>TikTok AI 无人直播脚本（49 USDT）</h3>
-    <p>自动开播、循环视频播放、定时挂机、自动回复弹幕，真正做到零人工直播获客。</p >
-    <p>附详细教程，一次购买永久使用。</p >
-    <button class="buy-button" onclick="window.location.href='pay.html?product=tiktok_live'">立即购买（49 USDT）</button>
+    <h3>自动群发引流脚本</h3>
+    <p>多平台支持关键词群发、评论引流，自动识别目标用户，一键导入文本或视频话术。</p >
+    <ul>
+      <li>支持批量发送、冷启动项目引流</li>
+      <li>适配 Telegram 群发、TikTok 评论引流、Twitter @人推广</li>
+      <li>配合注册脚本使用可放大收益</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>TikTok AI 无人直播脚本</h3>
+    <p>自动开播 + 循环播放视频 + 自动挂机获客，无需真人入镜，适合知识变现、产品引流。</p >
+    <ul>
+      <li>支持上传多段视频循环直播</li>
+      <li>支持定时开播、定时停止</li>
+      <li>支持自动回复弹幕、模拟互动</li>
+    </ul>
   </div>
 </section>
 
-<!-- FAQ 问答 -->
+<!-- FAQ -->
 <section class="section">
   <h2>常见问题 FAQ</h2>
   <div class="faq">
-    <h3>1. 脚本支持哪些平台？</h3>
-    <p>Telegram、TikTok、Twitter、Instagram、Facebook 均支持，持续更新中。</p >
+    <h3>1. 如何接收购买的脚本？</h3>
+    <p>支付成功后，系统将自动发送脚本到你填写的邮箱。</p >
 
-    <h3>2. 注册验证码从哪里来？</h3>
-    <p>请自备虚拟号平台账号，常用如 sms-activate.org、getsmscode.com、5sim.net 等，价格按国家不同，约 0.1 - 0.5 USDT 一次。</p >
+    <h3>2. 使用这些脚本需要技术吗？</h3>
+    <p>不需要，每份脚本都附带图文说明，0基础照着教程操作即可。</p >
 
-    <h3>3. 如何使用这些脚本？</h3>
-    <p>解压后，在电脑上打开命令行（Win+R 输入 cmd），根据教程执行脚本。每个包内都含图文说明文档。</p >
+    <h3>3. 验证码怎么获取？</h3>
+    <p>建议使用 sms-activate.org / getsmscode.com / 5sim.net，按国家计费，约 0.1 ~ 0.5 USDT 一次。</p >
 
-    <h3>4. 是否永久可用？会不会失效？</h3>
-    <p>脚本一次购买永久使用，更新将发放新版本，技术支持持续维护。</p >
+    <h3>4. 是否永久使用？能否多次运行？</h3>
+    <p>脚本永久可用，支持无限次执行，不限电脑数量。</p >
   </div>
 </section>
 
-<!-- 信任保障 -->
+<!-- 信任背书 -->
 <section class="section">
-  <h2>为什么选择我们？</h2>
+  <h2>你将获得</h2>
   <ul class="benefits">
-    <li>100% 自动化，摆脱人工操作</li>
-    <li>脚本永久使用，不限设备</li>
-    <li>支持所有主流虚拟号平台</li>
-    <li>适配各种黑科技项目和套利策略</li>
-    <li>每份脚本附完整图文说明，0基础可用</li>
+    <li>一键自动化执行，完全解放人工</li>
+    <li>配套完整教程，新手也能快速上手</li>
+    <li>支持平台广泛，长期稳定可用</li>
+    <li>每月持续更新，不断新增功能</li>
+    <li>邮箱发货机制，安全可靠无打扰</li>
   </ul>
 </section>
 
-<!-- 页面结尾 -->
+<!-- 页脚 -->
 <footer class="footer">
-  <p>© 2025 自动注册脚本商城｜数字项目实战工具库</p >
+  <p>© 2025 脚本自动化商城｜所有脚本永久可用｜邮箱发货</p >
 </footer>
 
 </body>

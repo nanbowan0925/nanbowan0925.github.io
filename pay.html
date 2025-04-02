@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>支付页面</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: "Microsoft YaHei", sans-serif; background: #f8f8f8; padding: 30px; color: #333; }
+    .container { max-width: 600px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    label { display: block; margin-bottom: 10px; font-weight: bold; }
+    input, select { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 6px; }
+    button { background: #4CAF50; color: white; padding: 12px 20px; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
+    button:hover { background: #43a047; }
+    #result { margin-top: 20px; font-weight: bold; color: #e91e63; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>填写邮箱并选择购买脚本</h2>
+
+    <label for="email">你的邮箱地址：</label>
+    <input type="email" id="email" placeholder="example@outlook.com" required>
+
+    <label for="script">选择脚本：</label>
+    <select id="script">
+      <option value="telegram_register">Telegram 注册脚本（29 USDT）</option>
+      <option value="tiktok_register">TikTok 注册脚本（29 USDT）</option>
+      <option value="twitter_register">Twitter 注册脚本（29 USDT）</option>
+      <option value="facebook_register">Facebook 注册脚本（29 USDT）</option>
+      <option value="instagram_register">Instagram 注册脚本（29 USDT）</option>
+      <option value="telegram_spammer">Telegram 自动群发脚本（39 USDT）</option>
+      <option value="tiktok_spammer">TikTok 评论群发脚本（39 USDT）</option>
+      <option value="twitter_spammer">Twitter 批量发帖脚本（39 USDT）</option>
+      <option value="facebook_spammer">Facebook 评论脚本（39 USDT）</option>
+      <option value="instagram_spammer">Instagram 私信脚本（39 USDT）</option>
+      <option value="telegram_collector">Telegram 采集脚本（39 USDT）</option>
+      <option value="tiktok_ai_live">TikTok AI 无人直播脚本（49 USDT）</option>
+    </select>
+
+    <button onclick="jumpToPay()">点击跳转付款</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function jumpToPay() {
+      const email = document.getElementById("email").value.trim();
+      const script = document.getElementById("script").value;
+
+      if (!email || !script) {
+        document.getElementById("result").textContent = "请填写完整信息再提交。";
+        return;
+      }
+
+      // 生成带参数的付款链接
+      const baseUrl = "https://usdt-tron-check.pages.dev";
+      const url = `${baseUrl}/pay?script=${encodeURIComponent(script)}&email=${encodeURIComponent(email)}`;
+      window.location.href = url;
+    }
+  </script>
+</body>
+</html>

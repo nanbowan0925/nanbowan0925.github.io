@@ -1,49 +1,94 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>自动注册 + 推广脚本合集商城</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>付款确认 - 自动发货系统</title>
   <style>
-    body { font-family: "Microsoft Yahei", sans-serif; background: #f8f8f8; padding: 40px; color: #222; }
-    .container { background: #fff; border-radius: 10px; padding: 30px; max-width: 850px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h1 { text-align: center; }
-    h2 { margin-top: 40px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-    ul { list-style: none; padding: 0; }
-    li { margin-bottom: 15px; }
-    .price { color: #e91e63; font-weight: bold; }
+    body { font-family: "Microsoft YaHei", sans-serif; background: #f9f9f9; padding: 20px; color: #333; }
+    .container { max-width: 700px; margin: auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h1 { color: #222; }
+    .info { margin-bottom: 25px; }
+    img.qr { width: 220px; margin: 15px 0; }
+    .address { font-size: 15px; word-break: break-all; background: #f3f3f3; padding: 10px; border-radius: 5px; }
+    label, input, button { display: block; width: 100%; font-size: 16px; margin-top: 15px; }
+    input[type="text"], input[type="email"] {
+      padding: 10px; border: 1px solid #ccc; border-radius: 5px;
+    }
+    button {
+      background: #2196f3; color: #fff; border: none; padding: 12px;
+      border-radius: 5px; cursor: pointer;
+    }
+    button:hover { background: #1976d2; }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>自动注册 + 推广脚本合集商城</h1>
-    
-    <h2>专区一：自动注册脚本（29 USDT）</h2>
-    <ul>
-      <li>Telegram 注册脚本</li>
-      <li>TikTok 注册脚本</li>
-      <li>Twitter 注册脚本</li>
-      <li>Facebook 注册脚本</li>
-      <li>Instagram 注册脚本</li>
-    </ul>
+    <h1>付款确认</h1>
+    <div class="info">
+      <p>请向以下地址支付 <strong id="amount">29</strong> USDT（TRC20），付款完成后填写订单号。</p >
+      < img src="usdt_qr.png" alt="扫码付款" class="qr" />
+      <div class="address">
+        收款地址：<br><strong>TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</strong>
+      </div>
+    </div>
 
-    <h2>专区二：推广 / 群发 / 数据采集脚本（39 USDT）</h2>
-    <ul>
-      <li>Telegram 自动群发脚本</li>
-      <li>TikTok 评论群发脚本</li>
-      <li>Twitter 私信 + 批量发帖脚本（自动引流）</li>
-      <li>Facebook 评论群发脚本</li>
-      <li>Instagram 私信群发脚本</li>
-      <li>Telegram 群成员采集脚本</li>
-    </ul>
+    <form id="txForm">
+      <input type="hidden" id="selectedScript" />
+      <input type="hidden" id="buyerEmail" />
 
-    <h2>AI无人直播脚本（49 USDT）</h2>
-    <ul>
-      <li>TikTok AI 无人直播脚本（自动开播 + 自动回复弹幕）</li>
-    </ul>
+      <label for="txid">请输入订单哈希（TXID）：</label>
+      <input type="text" id="txid" placeholder="粘贴您的交易哈希" required />
 
-    <p>请点击下方按钮，填写邮箱并选择脚本，付款后系统将自动发货：</p >
-    立即购买脚本
+      <button type="submit">确认并发货</button>
+    </form>
+
+    <p id="status" style="margin-top: 20px;"></p >
   </div>
+
+  <script>
+    const url = new URL(window.location.href);
+    const script = url.searchParams.get("script");
+    const email = url.searchParams.get("email");
+
+    let price = 29;
+    if (["tg_spammer", "tiktok_spammer", "twitter_spammer", "facebook_spammer", "instagram_spammer", "scraper"].includes(script)) {
+      price = 39;
+    } else if (script === "tiktok_live_ai") {
+      price = 49;
+    }
+
+    document.getElementById("amount").textContent = price;
+    document.getElementById("selectedScript").value = script;
+    document.getElementById("buyerEmail").value = email;
+
+    document.getElementById("txForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const txid = document.getElementById("txid").value.trim();
+      const scriptName = document.getElementById("selectedScript").value;
+      const emailAddr = document.getElementById("buyerEmail").value;
+
+      if (!txid || !emailAddr || !scriptName) {
+        alert("信息不完整！");
+        return;
+      }
+
+      document.getElementById("status").textContent = "正在验证订单，请稍候...";
+
+      fetch("/verify_tx_and_send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ txid: txid, script: scriptName, email: emailAddr })
+      })
+      .then(res => res.text())
+      .then(res => {
+        document.getElementById("status").textContent = res.includes("成功") ? "发货成功，请查收邮箱！" : res;
+      })
+      .catch(err => {
+        document.getElementById("status").textContent = "系统错误，请稍后重试";
+      });
+    });
+  </script>
 </body>
 </html>

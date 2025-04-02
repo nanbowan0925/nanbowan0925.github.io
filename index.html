@@ -3,26 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI 自动注册 + 群发引流脚本商城</title>
+  <title>全自动注册 + 引流 + 推广脚本商城</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- 顶部通知条 -->
-  <div class="navbar">
-    ⚙️ 此网站售卖的脚本为永久使用，需要电脑本地运行脚本，按 Win + R 输入 cmd 后执行脚本即可。
-  </div>
-
-  <!-- 页面主容器 -->
   <div class="container">
-    <h1>全平台自动化脚本系统</h1>
+    <h1>全自动注册 + 引流 + 推广脚本合集</h1>
     <p style="text-align:center; color:#ccc;">
-      实现自动注册、群发评论、私信引流、直播挂机，一次购买永久使用
+      一次购买，永久使用，支持 10+ 脚本组合打包
     </p >
 
     <!-- 表单模块 -->
     <form id="buyForm">
       <label for="email">接收邮箱</label>
-      <input type="email" id="email" placeholder="输入邮箱用于接收脚本 ZIP 包" required />
+      <input type="email" id="email" placeholder="请输入你的邮箱，用于接收脚本 ZIP 包" required />
 
       <label for="script">选择脚本</label>
       <select id="script" required>
@@ -46,68 +40,93 @@
       <button type="submit">立即购买</button>
     </form>
 
-    <!-- 支持平台模块 -->
-    <h2>支持平台说明</h2>
+    <!-- 购买后您将获得什么 -->
+    <h2>购买后您将获得什么？</h2>
     <ul>
-      <li>✅ 注册脚本已支持对接 sms-activate / 5sim / getsmscode 等虚拟号平台</li>
-      <li>✅ 支持批量号码调用、自动接收验证码并填入</li>
-      <li>✅ 注册后的账号自动保存至本地 txt 文件，一账号一行</li>
+      <li>📦 一个脚本压缩包（ZIP），内含：</li>
+      <ul>
+        <li>📜 脚本源文件（Python）</li>
+        <li>📖 中文图文教程（含使用说明、路径截图）</li>
+        <li>🔗 已集成接码平台 API 示例</li>
+        <li>💾 输出文件夹：自动保存注册后的账号信息</li>
+      </ul>
+      <li>🔄 持续免费更新（通过原邮箱推送新版）</li>
     </ul>
 
-    <!-- 注册账号使用说明 -->
-    <h2>注册后的账号去哪了？如何使用？</h2>
+    <!-- 脚本适合哪些人 -->
+    <h2>脚本适合哪些人？</h2>
     <ul>
-      <li>📂 注册脚本运行完成后，所有成功注册的账号会保存到脚本目录内的 <code>accounts.txt</code> 文件中</li>
-      <li>📄 每行格式为：手机号:密码 或 邮箱:密码（按平台而定）</li>
-      <li>🔑 你可以将这些账号导入自动群发脚本、引流工具，或转卖变现</li>
+      <li>🚀 想大批量注册平台账号用于营销的人</li>
+      <li>🛠️ 想快速搭建自己的推广系统但缺少技术基础的人</li>
+      <li>📈 正在运营 Telegram / TikTok / Twitter 私域流量池的人</li>
+      <li>🤖 想通过无人直播、注册拉新、群发私信获取客户的人</li>
+      <li>⏳ 不想依赖第三方买号、不想天天重复操作的人</li>
     </ul>
 
-    <!-- 脚本功能介绍模块 -->
-    <h2>支持功能一览</h2>
+    <!-- 脚本优势对比 -->
+    <h2>脚本优势对比</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>本站脚本</th>
+          <th>自己写脚本 / 免费工具</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>支持平台</td>
+          <td>Telegram、TikTok 等</td>
+          <td>单一平台或不稳定</td>
+        </tr>
+        <tr>
+          <td>账号保存</td>
+          <td>自动输出到 txt 文件</td>
+          <td>需手动记录</td>
+        </tr>
+        <tr>
+          <td>更新维护</td>
+          <td>自动推送 / 免费更新</td>
+          <td>无维护 / 自己查错</td>
+        </tr>
+        <tr>
+          <td>接码平台支持</td>
+          <td>内置接口，一键调用</td>
+          <td>需单独申请、调试</td>
+        </tr>
+        <tr>
+          <td>使用难度</td>
+          <td>有中文教程、傻瓜式</td>
+          <td>需编程基础</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 典型使用场景 -->
+    <h2>典型使用场景</h2>
     <ul>
-      <li>📱 自动注册：Telegram / TikTok / Twitter / Facebook / Instagram</li>
-      <li>📤 自动群发：私信 + 评论 + 群组引流，一键执行</li>
-      <li>🎥 无人直播：AI 自动开播 + 弹幕自动回复</li>
-      <li>🧲 数据采集：自动提取群组成员 / 评论区用户</li>
+      <li>📲 用注册脚本每天运行 200 个 Telegram 账号，接入引流机器人</li>
+      <li>🎥 使用 TikTok 无人直播脚本挂视频 24 小时吸引流量</li>
+      <li>🐦 将注册好的 Twitter 账号导入群发模块，批量自动发帖</li>
+      <li>📘 Facebook 注册 + 私信脚本，用于定向引导 WhatsApp</li>
+      <li>📸 Instagram 评论脚本 + 采集脚本，套娃式推广拉新</li>
     </ul>
 
-    <!-- 使用方法说明 -->
-    <h2>如何运行脚本？</h2>
+    <!-- 常见问题 FAQ -->
+    <h2>常见问题 FAQ</h2>
     <ul>
-      <li>✅ 所有脚本内含完整中文教程，无需技术基础</li>
-      <li>🖥️ Windows 用户：按 <code>Win + R</code> → 输入 <code>cmd</code> → 回车</li>
-      <li>📁 在命令行中输入：<code>cd 脚本所在目录</code></li>
-      <li>▶️ 执行脚本命令：<code>python 脚本名称.py</code></li>
-    </ul>
-
-    <!-- 系统说明 -->
-    <h2>脚本运行环境要求</h2>
-    <ul>
-      <li>✅ 需安装 Python 3.8 及以上版本</li>
-      <li>✅ 已内置依赖安装脚本，一键配置环境</li>
-      <li>✅ 支持 Windows 本地运行 / VPS 批量挂机运行</li>
-    </ul>
-
-    <!-- 页脚 -->
-    <div class="footer">
-      支持 USDT（TRC20）付款，系统自动识别到账后自动发货脚本压缩包。<br>
-      所有脚本可长期使用，无时间限制，持续优化更新中。
-    </div>
-  </div>
-
-  <!-- 表单跳转 -->
-  <script>
-    document.getElementById("buyForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const email = document.getElementById("email").value.trim();
-      const script = document.getElementById("script").value;
-      if (!email || !script) {
-        alert("请填写完整信息");
-        return;
-      }
-      const url = `pay.html?email=${encodeURIComponent(email)}&script=${encodeURIComponent(script)}`;
-      window.location.href = url;
-    });
-  </script>
-</body>
-</html>
+      <li>
+        <strong>Q：付款后多久能收到脚本？</strong><br>
+        A：系统自动监听 TRC20 收款，确认到账立即发货 ZIP 包，无需等待。
+      </li>
+      <li>
+        <strong>Q：购买后是不是永久使用？有时间限制吗？</strong><br>
+        A：全部脚本永久有效，版本更新后原邮箱也会收到新版。
+      </li>
+      <li>
+        <strong>Q：使用时需要服务器吗？</strong><br>
+        A：不强制。脚本支持本地电脑运行（Win + R → CMD），也可部署到 VPS 无限挂机。
+      </li>
+      <li>
+        <strong>Q：我不会 Python 怎么办？</strong><br>
+        A：脚本内含中文教程，只需复制粘贴，不需要写代码

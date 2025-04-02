@@ -1,88 +1,107 @@
+/* 全局基础样式 */
 body {
-  font-family: "Microsoft YaHei", sans-serif;
-  background: #f4f4f4;
   margin: 0;
   padding: 0;
+  font-family: "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  background-color: #f0f2f5;
   color: #333;
 }
 
+/* 容器卡片 */
 .container {
-  max-width: 850px;
-  margin: auto;
+  max-width: 900px;
+  margin: 60px auto;
   background: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-top: 50px;
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.4s ease;
 }
 
-h1, h2, h3 {
+/* 标题样式 */
+h1 {
+  text-align: center;
+  font-size: 28px;
   color: #222;
+  margin-bottom: 30px;
+}
+h2 {
+  font-size: 20px;
+  color: #4CAF50;
+  margin-top: 40px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
 }
 
-p, li {
-  line-height: 1.7;
+/* 列表展示 */
+ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+ul li {
+  margin-bottom: 8px;
   font-size: 16px;
 }
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  font-size: 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
+/* 表单输入区 */
+label {
+  display: block;
+  margin-top: 25px;
+  font-weight: bold;
 }
-
-button:hover {
-  background-color: #45a049;
-}
-
 input, select {
   width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-  border-radius: 5px;
+  padding: 12px 14px;
+  margin-top: 10px;
   border: 1px solid #ccc;
-  font-size: 16px;
-}
-
-label {
-  font-weight: bold;
-  display: block;
-  margin-top: 15px;
-}
-
-.wallet-box {
-  background: #fefefe;
-  border: 1px solid #ccc;
-  padding: 15px;
-  margin: 10px 0 20px;
-  border-radius: 8px;
-  word-wrap: break-word;
-}
-
-.tip {
-  background: #fffde7;
-  border-left: 4px solid #fbc02d;
-  padding: 10px;
+  border-radius: 6px;
   font-size: 15px;
-  margin-bottom: 20px;
+  transition: border-color 0.3s ease;
+}
+input:focus, select:focus {
+  border-color: #4CAF50;
+  outline: none;
 }
 
-.status {
-  font-weight: bold;
-  color: #d32f2f;
-  margin-top: 20px;
+/* 按钮样式 */
+button {
+  width: 100%;
+  margin-top: 30px;
+  padding: 14px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 17px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background-color: #43a047;
 }
 
+/* 通用说明条 */
+.tip {
+  background: #e8f5e9;
+  border-left: 4px solid #66bb6a;
+  padding: 12px 18px;
+  margin-top: 25px;
+  font-size: 15px;
+  color: #2e7d32;
+  border-radius: 6px;
+}
+
+/* 底部说明 */
 .footer {
-  margin-top: 40px;
   text-align: center;
-  color: #888;
+  margin-top: 50px;
   font-size: 14px;
+  color: #888;
+  line-height: 1.6;
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }

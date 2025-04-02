@@ -3,76 +3,101 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>付款确认 - 自动注册推广脚本商城</title>
+  <title>付款页面 - 自动脚本商城</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* 针对付款页面的额外样式 */
+    .payment-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    }
+    .payment-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .payment-header h2 {
+      color: #00ffe5;
+      text-shadow: 0 0 10px #00ffe5;
+    }
+    .payment-info {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .qr-code {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .qr-code img {
+      max-width: 200px;
+    }
+    .footer-text {
+      text-align: center;
+      font-size: 0.9em;
+      color: #aaa;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
+  <!-- 顶部导航标题 -->
+  <header class="header">
+    <h1>自动脚本商城 - 付款页面</h1>
+  </header>
 
-<header class="header">
-  <h1>确认支付并填写订单信息</h1>
-  <p>请在 30 分钟内完成付款并提交交易哈希</p >
-</header>
-
-<section class="section">
-  <div class="card">
-    <h3>您选择的脚本类型：</h3>
-    <p id="productName" style="font-size: 1.2em; color: #00ffe5;">加载中...</p >
-
-    <h3>系统收款地址（USDT-TRC20）</h3>
-    <p style="word-break: break-all; color: #fff;">
-      <strong id="walletAddress">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</strong>
-    </p >
-    <button class="buy-button" onclick="copyAddress()">复制地址</button>
-
-    <br><br>
-    < img src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB" alt="扫码付款" style="max-width: 200px; border: 2px solid #00ffe5; border-radius: 8px; margin-top: 20px;">
-
-    <br><br><br>
-    <label for="txid"><strong>付款后请填写订单哈希（Transaction ID）：</strong></label><br>
-    <input type="text" id="txid" placeholder="填写链上交易哈希 TxID" style="padding: 10px; margin-top: 10px; width: 100%; border-radius: 6px; border: 1px solid #00ffe5; background: #111; color: #fff;">
-
-    <br><br>
-    <button class="buy-button" onclick="submitOrder()">我已付款，提交订单</button>
+  <!-- 付款信息区域 -->
+  <div class="payment-container">
+    <div class="payment-header">
+      <h2>请完成付款</h2>
+      <p>订单详情如下：</p >
+    </div>
+    <!-- 显示产品与邮箱信息 -->
+    <div class="payment-info">
+      <p><strong>产品类型：</strong><span id="product-info">未选择</span></p >
+      <p><strong>接收邮箱：</strong><span id="email-info">未提供</span></p >
+      <p><strong>付款金额：</strong><span id="amount-info">待确认</span></p >
+    </div>
+    <!-- 二维码支付区 -->
+    <div class="qr-code">
+      <p>请使用支付工具扫描下方二维码完成付款</p >
+      < img src="https://via.placeholder.com/200?text=QR+Code" alt="付款二维码">
+    </div>
+    <!-- 支付说明 -->
+    <div class="payment-info">
+      <p>付款成功后，系统将自动将脚本发送至您提供的邮箱。若长时间未收到邮件，请及时联系我们的客服。</p >
+    </div>
   </div>
-</section>
 
-<script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const product = urlParams.get('product') || '';
-  const email = urlParams.get('email') || '';
-  const productMap = {
-    telegram_register: 'Telegram 自动注册脚本',
-    tiktok_register: 'TikTok 自动注册脚本',
-    twitter_register: 'Twitter 自动注册脚本',
-    instagram_register: 'Instagram 自动注册脚本',
-    facebook_register: 'Facebook 自动注册脚本',
-    telegram_spam: 'Telegram 群发推广脚本',
-    tiktok_spam: 'TikTok 群发推广脚本',
-    twitter_spam: 'Twitter 群发脚本',
-    tiktok_live: 'TikTok AI 无人直播脚本'
-  };
-  document.getElementById("productName").innerText = productMap[product] || "未知脚本";
+  <!-- 页脚 -->
+  <footer class="footer-text">
+    <p>© 2025 自动脚本商城 - 所有权利保留</p >
+  </footer>
 
-  function copyAddress() {
-    const address = document.getElementById("walletAddress").innerText;
-    navigator.clipboard.writeText(address);
-    alert("钱包地址已复制");
-  }
-
-  function submitOrder() {
-    const txid = document.getElementById("txid").value.trim();
-    if (!txid || txid.length < 20) {
-      alert("请输入有效的链上哈希 TxID！");
-      return;
+  <script>
+    // 从URL中获取参数并显示订单信息
+    function getQueryParam(param) {
+      let urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param) || "";
     }
-    // 提交至监听脚本处理页面，可修改为真实处理接口
-    window.location.href = `confirm.html?product=${product}&email=${encodeURIComponent(email)}&txid=${encodeURIComponent(txid)}`;
-  }
-</script>
-
-<footer class="footer">
-  <p>© 2025 自动注册与推广脚本商城｜安全支付｜系统自动发货</p >
-</footer>
-
+    
+    document.getElementById('product-info').textContent = getQueryParam('product');
+    document.getElementById('email-info').textContent = getQueryParam('email');
+    
+    // 根据产品类型设置付款金额
+    let product = getQueryParam('product');
+    let amount = "待确认";
+    if(product.includes("register")) {
+      amount = "29 USDT";
+    } else if(product.includes("spam")) {
+      amount = "39 USDT";
+    } else if(product.includes("live_ai")) {
+      amount = "49 USDT";
+    }
+    document.getElementById('amount-info').textContent = amount;
+  </script>
 </body>
 </html>

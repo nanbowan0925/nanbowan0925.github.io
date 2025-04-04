@@ -254,3 +254,8 @@ select:focus {
 .notice-box strong {
   color: #00ffd0;
 }
+/* 修复下拉框选项字体颜色不可见的问题 */
+select option {
+  background-color: #0a0a23 !important;
+  color: #00ffe5 !important;
+}

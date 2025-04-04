@@ -40,6 +40,16 @@
       border: 1px solid rgba(0,255,255,0.1);
       border-radius: 10px;
     }
+    .notice-box {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.03);
+      border-left: 4px solid #00ffe5;
+      padding: 20px;
+      border-radius: 8px;
+      font-size: 1em;
+      line-height: 1.7;
+      color: #ccc;
+    }
   </style>
 </head>
 <body>
@@ -54,7 +64,7 @@
   <div class="payment-details">
     <p><strong>产品类型：</strong><span id="product">加载中...</span></p >
     <p><strong>接收邮箱：</strong><span id="email">加载中...</span></p >
-    <p><strong>付款金额：</strong><span id="amount">USDT</span></p >
+    <p><strong>付款金额：</strong><span id="amount">加载中...</span></p >
   </div>
 
   <div class="wallet-box">
@@ -67,6 +77,14 @@
     <p>付款完成后，请填写链上交易哈希（TxID）：</p >
     <input type="text" id="txid" placeholder="输入交易哈希 TxID" style="width: 100%; padding: 10px; border-radius: 6px; margin-bottom: 10px;">
     <button class="buy-button">我已付款，提交订单</button>
+  </div>
+
+  <!-- 新增自动发货说明区域 -->
+  <div class="notice-box">
+    <strong>关于自动发货说明：</strong><br>
+    系统会自动监听链上转账记录，当检测到您的钱包转账成功，且提交了对应的交易哈希（TxID）和邮箱后，<br>
+    将在<strong>1分钟内自动发货</strong>。脚本将以附件形式发送至您填写的邮箱地址。无需联系客服、无需等待，<br>
+    整个流程全自动处理，请放心付款。
   </div>
 </div>
 
@@ -103,10 +121,13 @@
   document.getElementById("product").textContent = productMap[productKey] || productKey;
   document.getElementById("email").textContent = email;
 
-  // 设置金额
+  // 修复金额显示错误：强匹配 key 名称，默认 29，特例 49
   let amount = "29";
   if (productKey === "tiktok_live_ai") {
     amount = "49";
+  }
+  if (!productMap[productKey]) {
+    amount = "待确认";
   }
   document.getElementById("amount").textContent = `${amount} USDT`;
 

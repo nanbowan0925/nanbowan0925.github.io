@@ -57,14 +57,12 @@
     <p><strong>付款金额：</strong><span id="amount">USDT</span></p >
   </div>
 
-  <!-- 收款地址展示 -->
   <div class="wallet-box">
     <p>请将 USDT (TRC20) 转账至以下地址：</p >
     <p><strong id="wallet">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</strong></p >
     <button onclick="copyWallet()" class="buy-button">复制收款地址</button>
   </div>
 
-  <!-- 提交交易哈希 -->
   <div class="payment-details" style="margin-top: 30px;">
     <p>付款完成后，请填写链上交易哈希（TxID）：</p >
     <input type="text" id="txid" placeholder="输入交易哈希 TxID" style="width: 100%; padding: 10px; border-radius: 6px; margin-bottom: 10px;">
@@ -87,27 +85,30 @@
   const wallet = document.getElementById("wallet").textContent;
 
   const productMap = {
-    telegram_register: "Telegram 自动注册脚本",
-    tiktok_register: "TikTok 自动注册脚本",
-    twitter_register: "Twitter 自动注册脚本",
-    instagram_register: "Instagram 自动注册脚本",
-    facebook_register: "Facebook 自动注册脚本",
-    telegram_spam: "Telegram 群发引流脚本",
-    tiktok_spam: "TikTok 群发评论脚本",
-    twitter_spam: "Twitter 推广群发脚本",
-    facebook_spam: "Facebook 自动发帖脚本",
-    instagram_spam: "Instagram 自动推广脚本",
+    telegram_full: "Telegram 自动注册 + 群发脚本",
+    tiktok_full: "TikTok 自动注册 + 群发脚本",
+    twitter_full: "Twitter 自动注册 + 群发脚本",
+    instagram_full: "Instagram 自动注册 + 群发脚本",
+    facebook_full: "Facebook 自动注册 + 群发脚本",
+    scraper_telegram: "Telegram 用户关键词采集脚本",
+    scraper_reddit: "Reddit 热帖评论者采集脚本",
+    scraper_twitter: "Twitter 推文 + 用户名采集脚本",
+    scraper_tiktok: "TikTok 视频发布者采集脚本",
+    scraper_youtube: "YouTube 评论者采集脚本",
+    scraper_quora: "Quora 问答用户采集脚本",
+    scraper_google: "Google 搜索关键词采集脚本",
     tiktok_live_ai: "TikTok AI 无人直播挂机脚本"
   };
 
   document.getElementById("product").textContent = productMap[productKey] || productKey;
   document.getElementById("email").textContent = email;
 
-  let amountValue = "0";
-  if (productKey.includes("register")) amountValue = "29";
-  else if (productKey.includes("spam")) amountValue = "39";
-  else if (productKey.includes("live_ai")) amountValue = "49";
-  document.getElementById("amount").textContent = `${amountValue} USDT`;
+  // 设置金额
+  let amount = "29";
+  if (productKey === "tiktok_live_ai") {
+    amount = "49";
+  }
+  document.getElementById("amount").textContent = `${amount} USDT`;
 
   function copyWallet() {
     navigator.clipboard.writeText(wallet).then(() => {

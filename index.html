@@ -1,132 +1,107 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>脚本自动化商城｜注册引流推广全自动</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>自动账号生成与采集系统商城</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    window.onload = function() {
+      alert("网站所有软件皆为全自动，文件解压以后双击exe运行，按照使用说明进行操作。");
+    }
+  </script>
 </head>
 <body>
 
-<!-- 弹窗提示 -->
-<div id="popup" class="popup">
-  <div class="popup-content">
-    <h2>重要提示</h2>
-    <p>本网站售卖的脚本均为【永久使用】，解压压缩包双击exe即可使用。<br>
-    如遇平台更新政策出现异常情况请发邮件至btahv720372@outlook.com,获取更新脚本。</strong><br><br>
-    支持主流虚拟号平台：sms-activate、5sim、getsmscode 等</p >
-    <button onclick="closePopup()">我已知晓</button>
-  </div>
+<div class="notification">
+  本站所有软件均为 Windows 可执行程序，无需安装环境，解压即用。付款后系统自动识别到账并跳转对应下载页面，无需等待。
 </div>
 
-<script>
-  window.onload = function () {
-    document.getElementById("popup").style.display = "block";
-  };
-  function closePopup() {
-    document.getElementById("popup").style.display = "none";
-  }
-</script>
-
-<!-- 顶部导航 -->
-<header class="header">
-  <h1>全球最强自动注册与推广脚本商城</h1>
-  <p>注册 / 群发 / 引流 / 采集，批量执行，永久使用</p >
+<header>
+  <h1>自动账号生成 & 智能采集系统</h1>
+  <p>集批量注册、群发推广、用户采集于一体，专为引流、变现、推广打造的一站式工具中心</p >
 </header>
 
-<!-- 顶部 Banner -->
-<section class="banner">
-  <h2>一键构建自动赚钱系统</h2>
-  <p>支持平台：Telegram / TikTok / Twitter / Facebook / Instagram / Reddit / YouTube</p >
-</section>
+<section class="tool-section">
+  <h2>专区一：批量账号生成与群发工具（29 USDT）</h2>
+  <div class="tool-grid">
 
-<!-- 表单：脚本选择 + 邮箱填写 -->
-<section class="section">
-  <h2>选择你需要的脚本</h2>
-  <form action="pay.html" method="GET" class="form-card">
-    <label for="product">请选择脚本类型：</label>
-    <select id="product" name="product" required>
-      <option value="">-- 请选择 --</option>
-      <optgroup label="注册 / 群发 / 爬虫 / 视频脚本专区">
-        <option value="telegram_full">Telegram 自动注册 + 群发脚本（29 USDT）</option>
-        <option value="tiktok_full">TikTok 自动注册 + 群发脚本（29 USDT）</option>
-        <option value="twitter_full">Twitter 自动注册 + 群发脚本（29 USDT）</option>
-        <option value="instagram_full">Instagram 自动注册 + 群发脚本（29 USDT）</option>
-        <option value="facebook_full">Facebook 自动注册 + 群发脚本（29 USDT）</option>
-        <option value="scraper_telegram">Telegram 用户关键词采集脚本（29 USDT）</option>
-        <option value="scraper_reddit">Reddit 热帖 & 评论者采集脚本（29 USDT）</option>
-        <option value="scraper_twitter">Twitter 推文 & 用户名采集脚本（29 USDT）</option>
-        <option value="scraper_tiktok">TikTok 视频发布者采集脚本（29 USDT）</option>
-        <option value="scraper_youtube">YouTube 视频评论者采集脚本（29 USDT）</option>
-        <option value="scraper_quora">Quora 问答用户采集脚本（29 USDT）</option>
-        <option value="scraper_google">Google 搜索关键词采集脚本（29 USDT）</option>
-        <option value="tiktok_live_ai">TikTok AI 无人直播挂机脚本（49 USDT）</option>
-      </optgroup>
-    </select>
+    <div class="tool-card">
+      <h3>Telegram 批量账号生成器</h3>
+      <p>可批量注册 Telegram 账号，自动保存为 session 文件，支持主流接码平台，执行全程自动化。</p >
+      <p>配套一键群发功能，支持群组和私信推广。</p >
+      <span class="price">29 USDT</span>
+    </div>
 
-    <label for="email">你的邮箱（用于接收脚本）：</label>
-    <input type="email" id="email" name="email" placeholder="example@email.com" required>
+    <div class="tool-card">
+      <h3>TikTok 注册与群发系统</h3>
+      <p>支持 Outlook 邮箱批量注册 TikTok 账号，并自动点赞、评论、关注视频，适合做自动引流矩阵。</p >
+      <p>支持 Chrome 控制，运行稳定。</p >
+      <span class="price">29 USDT</span>
+    </div>
 
-    <button type="submit" class="buy-button">立即付款 & 获取脚本</button>
-  </form>
-</section>
+    <div class="tool-card">
+      <h3>Twitter 自动注册与推广系统</h3>
+      <p>支持批量邮箱注册 Twitter 账号，自动发推、转发、@用户，快速构建营销阵列。</p >
+      <p>适用于批量账号矩阵操作、舆论引导。</p >
+      <span class="price">29 USDT</span>
+    </div>
 
-<!-- FAQ 问题 -->
-<section class="section">
-  <h2>常见问题 FAQ</h2>
-  <div class="faq">
-    <h3>1. 脚本支持哪些平台？</h3>
-    <p>Telegram、TikTok、Twitter、Instagram、Facebook、Reddit、YouTube、Quora 等均支持。</p >
+    <div class="tool-card">
+      <h3>Instagram 批量注册与群发工具</h3>
+      <p>批量注册 Instagram 账号并执行自动评论或私信群发任务，广泛适用于网红营销与品牌推广。</p >
+      <p>一键启动，免代码操作。</p >
+      <span class="price">29 USDT</span>
+    </div>
 
-    <h3>2. 注册验证码从哪获取？</h3>
-    <p>请前往虚拟号平台注册：sms-activate.org、getsmscode.com、5sim.net 等，价格为每次 0.1 - 0.5 USDT。</p >
+    <div class="tool-card">
+      <h3>Facebook 自动注册与群发工具</h3>
+      <p>全自动注册 Facebook 多账号，并可批量发送私信、加入社群执行推广任务。</p >
+      <p>适合本地营销、社区引流等应用。</p >
+      <span class="price">29 USDT</span>
+    </div>
 
-    <h3>3. 使用方式复杂吗？</h3>
-    <p>解压脚本 → 双击exe文件→ 按说明执行，一看就懂，0基础可上手。</p >
-
-    <h3>4. 一个脚本能用多久？会更新吗？</h3>
-    <p>脚本永久使用，支持免费升级。若平台逻辑变更，将更新新版供老用户下载。</p >
   </div>
 </section>
 
-<!-- 信任说明 -->
-<section class="section">
-  <h2>为什么选择我们？</h2>
-  <ul class="benefits">
-    <li>100% 自动化运行，节省人工</li>
-    <li>一次付费永久使用，不限账号</li>
-    <li>全平台支持，适配各种引流场景</li>
-    <li>注册账号自动保存，支持群发与投放</li>
-    <li>附带完整教程（图文 + 命令）</li>
-    <li>全中文操作，无需技术基础</li>
-  </ul>
+<section class="tool-section">
+  <h2>专区二：智能用户采集系统（高效引流工具）</h2>
+  <div class="tool-grid">
+
+    <div class="tool-card">
+      <h3>多平台关键词采集器</h3>
+      <p>支持输入关键词，自动在以下平台采集目标用户：</p >
+      <ul>
+        <li>Telegram</li>
+        <li>Reddit</li>
+        <li>Twitter</li>
+        <li>TikTok</li>
+        <li>YouTube</li>
+        <li>Google</li>
+        <li>Quora</li>
+      </ul>
+      <p>适用于精准采集用户名单，引流效果远超广告投放。</p >
+      <span class="price">39 USDT</span>
+    </div>
+
+    <div class="tool-card">
+      <h3>点赞与评论用户采集器</h3>
+      <p>可批量采集以下平台真实互动用户：</p >
+      <ul>
+        <li>Telegram 频道点赞用户</li>
+        <li>Reddit 热帖评论作者</li>
+        <li>YouTube 视频评论用户</li>
+      </ul>
+      <p>专为高转化私信引流场景打造，适用于精准互动推广。</p >
+      <span class="price">49 USDT</span>
+    </div>
+
+  </div>
 </section>
 
-<!-- 爬虫说明 -->
-<section class="section">
-  <h2>关键词采集脚本合集说明</h2>
-  <p style="font-size: 1.1em; line-height: 1.7; color: #ccc;">
-    本专区脚本覆盖多个主流平台，适用于批量采集用户信息/热门内容：<br><br>
-    ✅ Telegram：采集群成员 / 用户名 / 群组链接<br>
-    ✅ Reddit：按关键词采集发帖用户、子版块评论者<br>
-    ✅ TikTok：采集热词视频发布者 / 用户主页信息<br>
-    ✅ Twitter：按关键词采集用户与推文内容<br>
-    ✅ YouTube：采集视频评论者用户名（支持热门视频）<br>
-    ✅ Quora：关键词采集提问者与回答者<br>
-    ✅ Google：搜索结果 URL 批量提取（支持组合搜索）<br><br>
-
-    全部脚本一次付费，永久使用，适合：
-    - 精准引流用户池采集；
-    - 自动营销 / 群发脚本前预热；
-    - Telegram 引流爆破 / 群裂变；<br><br>
-
-    每份脚本内含教程，一键启动，适合工作室批量变现与个人副业自动化。
-  </p >
-</section>
-
-<!-- 页脚 -->
-<footer class="footer">
-  <p>© 2025 脚本自动化商城｜Telegram & 爬虫工具 & TikTok 系统集</p >
+<footer>
+  <p>所有工具均为真实可运行的自动化 `.exe` 程序，支持批量账号创建、群发推广、互动数据采集等任务。</p >
+  <p>付款后系统将在 30 秒内自动识别到账并跳转至下载页面，无需联系客服，无需等待。</p >
 </footer>
 
 </body>

@@ -1,107 +1,151 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>支付页面 | 自动发货系统</title>
+  <title>支付确认 - 自动发货系统</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(120deg, #0d0d0d, #1a1a1a);
+      color: #f2f2f2;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 100px auto;
+      background: rgba(30, 30, 30, 0.9);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #00ffff;
+    }
+
+    p {
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .wallet-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #111;
+      border: 1px solid #00ffff;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 30px;
+      font-family: monospace;
+    }
+
+    .wallet-box button {
+      background: #00ffff;
+      color: #000;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 20px;
+      background: #1f1f1f;
+      color: #fff;
+      box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1);
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background: #00ffff;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+      transition: 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background: #00cccc;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <script>
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    function submitForm(event) {
+      const txid = document.getElementById("txid").value.trim();
+      if (!txid) {
+        alert("请填写交易哈希");
+        event.preventDefault();
+        return false;
+      }
+      const product = getQueryParam("product");
+      document.getElementById("product").value = product;
+      return true;
+    }
+
+    function copyAddress() {
+      const addr = document.getElementById("wallet").innerText;
+      navigator.clipboard.writeText(addr);
+      alert("已复制收款地址");
+    }
+  </script>
 </head>
 <body>
-
-<section class="hero">
-  <h1>确认付款信息</h1>
-  <p class="tagline">请按提示付款并填写交易哈希，系统自动发货</p >
-  <p class="mission">网络：TRC20（USDT）</p >
-  <div class="hero-divider"></div>
-</section>
-
-<section class="zone">
-  <div class="card">
-    <h3>你正在购买：</h3>
-    <p id="product-name" style="font-size: 18px; color: #8fe3ff; font-weight: bold;">加载中...</p >
-    <p>付款金额：<span id="product-price" style="color:#ff00cc; font-size:18px;">--</span> USDT</p >
-
-    <hr style="margin: 20px 0; border-color: rgba(255,255,255,0.1);" />
-
-    <p>请将 USDT 转至以下地址：</p >
-    <div style="background:#111928; padding: 15px; border-radius: 10px; word-break: break-all;">
-      <code id="wallet-address">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</code>
+  <div class="container">
+    <h2>支付确认</h2>
+    <p>请支付 <strong>29 USDT</strong> 到以下地址（TRC20 网络）</p >
+    <div class="wallet-box">
+      <span id="wallet">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</span>
+      <button onclick="copyAddress()">复制</button>
     </div>
-    <button onclick="copyAddress()" style="margin-top: 10px;">复制收款地址</button>
 
-    <div style="margin-top: 30px;">
-      <p style="margin-bottom: 8px;">付款后请输入交易哈希：</p >
-      <form id="hash-form" action="https://naobowan/verify" method="POST" onsubmit="return checkHash()">
-        <input type="text" name="hash" id="txhash" placeholder="请输入交易哈希"
-          style="padding: 12px; width: 100%; border-radius: 8px; font-size: 15px; background: #1c2733; border: none; color: #eee; margin-bottom: 12px;" />
-        <input type="hidden" name="product" id="product-input" value="" />
-        <button type="submit">提交并验证</button>
-      </form>
-    </div>
+    <form action="http://38.60.250.63:8008/verify" method="POST" onsubmit="return submitForm(event)">
+      <input type="hidden" name="product" id="product" value="">
+      <label for="txid">请输入交易哈希（TXID）</label>
+      <input type="text" name="txid" id="txid" placeholder="示例：a6d7f4...." required />
+      <button type="submit">我已付款，确认下载</button>
+    </form>
   </div>
-</section>
-
-<section class="faq">
-  <div class="faq-item">
-    <h4>付款后多久可以下载？</h4>
-    <p>系统会在 5-10 秒内识别转账到账，立即跳转下载。</p >
-  </div>
-  <div class="faq-item">
-    <h4>怎么获取交易哈希？</h4>
-    <p>打开钱包转账记录详情，点击“交易 ID”复制即可。</p >
-  </div>
-  <div class="faq-item">
-    <h4>未到账或误转怎么办？</h4>
-    <p>请确保使用 TRC20 网络，地址金额正确，其他网络将丢失。</p >
-  </div>
-</section>
-
-<footer>
-  <div class="footer-content">
-    <p><strong>付款地址：</strong> TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</p >
-    <p><strong>网络要求：</strong> TRC20（USDT）</p >
-    <p><strong>系统说明：</strong> 自动识别到账，无需手动处理</p >
-  </div>
-</footer>
-
-<script>
-  function copyAddress() {
-    const address = document.getElementById("wallet-address").textContent;
-    navigator.clipboard.writeText(address).then(() => {
-      alert("收款地址已复制！");
-    });
-  }
-
-  function checkHash() {
-    const hash = document.getElementById("txhash").value.trim();
-    if (hash.length < 20) {
-      alert("请输入有效的交易哈希！");
-      return false;
-    }
-    return true;
-  }
-
-  const query = new URLSearchParams(window.location.search);
-  const product = query.get("product");
-
-  const products = {
-    telegram: { name: "Telegram 注册与群发工具", price: 29 },
-    tiktok: { name: "TikTok 注册与群发工具", price: 29 },
-    twitter: { name: "Twitter 注册与群发工具", price: 29 },
-    instagram: { name: "Instagram 注册与群发工具", price: 29 },
-    facebook: { name: "Facebook 注册与群发工具", price: 29 },
-    keywords: { name: "多平台关键词采集器", price: 39 },
-    engagers: { name: "点赞评论用户采集器", price: 49 }
-  };
-
-  if (products[product]) {
-    document.getElementById("product-name").textContent = products[product].name;
-    document.getElementById("product-price").textContent = products[product].price;
-    document.getElementById("product-input").value = product;
-  } else {
-    document.getElementById("product-name").textContent = "未知工具";
-  }
-</script>
-
 </body>
 </html>

@@ -1,164 +1,125 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>自动账号生成与数据采集商城</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .modal {
-      display: block;
-      position: fixed;
-      z-index: 9999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.6);
-    }
-    .modal-content {
-      background-color: #fff;
-      margin: 15% auto;
-      padding: 30px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 500px;
-      text-align: center;
-      font-size: 18px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
-    .modal-close {
-      margin-top: 20px;
-      background: #000;
-      color: #fff;
-      padding: 8px 20px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .buy-button {
-      display: inline-block;
-      background: #008cff;
-      color: white;
-      padding: 10px 18px;
-      margin-top: 15px;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .buy-button:hover {
-      background: #005fcc;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>批量账号生成器 & 智能采集系统商城</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- 弹窗提示 -->
-<div class="modal" id="welcomeModal">
-  <div class="modal-content">
-    <p>网站所有软件皆为全自动，文件解压以后双击exe运行，按照使用说明进行操作。</p >
-    <button class="modal-close" onclick="document.getElementById('welcomeModal').style.display='none'">我知道了</button>
+  <!-- 弹窗通知 -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <h3>温馨提示</h3>
+      <p>网站所有软件皆为全自动，文件解压以后双击 exe 运行，按照使用说明进行操作。</p >
+      <button onclick="closePopup()">我知道了</button>
+    </div>
   </div>
-</div>
 
-<div class="notification">
-  本站所有工具均为 Windows 可执行程序，解压即用，无需安装环境。付款后系统将在30秒内识别到账并跳转至下载页面，无需等待。
-</div>
+  <script>
+    window.onload = function() {
+      document.getElementById("popup").style.display = "flex";
+    }
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
 
-<header>
-  <h1>批量账号生成 & 智能采集系统商城</h1>
-  <p>帮助你自动注册、群发、采集目标用户，高效完成引流、推广与变现</p >
-</header>
+  <!-- 顶部标题 -->
+  <header>
+    <h1>批量账号生成器 & 智能采集系统商城</h1>
+    <p>全自动运行 · 无需修改代码 · 支持批量注册与群发 · 高效引流与变现利器</p >
+  </header>
 
-<section class="tool-section">
-  <h2>专区一：批量账号生成与自动群发工具（每款 29 USDT）</h2>
-  <div class="tool-grid">
+  <!-- 专区一 -->
+  <section class="zone">
+    <h2>专区一：批量账号生成与群发工具（每款 29 USDT）</h2>
 
-    <div class="tool-card">
-      <h3>Telegram 批量账号生成器</h3>
-      <p>自动注册 Telegram 多账号并生成 session 文件，支持主流接码平台。配套群发工具可对群组或私聊用户实现一键广告推送。</p >
-      <p>适合用于私信推广、群控营销、机器人矩阵搭建等场景。</p >
-      <span class="price">29 USDT</span>
-      立即购买
-    </div>
-
-    <div class="tool-card">
-      <h3>TikTok 注册与自动互动系统</h3>
-      <p>批量注册 TikTok 账号（支持 Outlook 邮箱），自动点赞、评论、关注目标视频，适合短视频批量营销与海外引流。</p >
-      <p>可配合 Chrome 驱动实现真实交互，运行稳定。</p >
-      <span class="price">29 USDT</span>
-      立即购买
-    </div>
-
-    <div class="tool-card">
-      <h3>Twitter 自动注册与群发系统</h3>
-      <p>支持邮箱批量注册 Twitter 账号，自动发推文、转发、@目标用户，适合账号矩阵式引流和营销裂变。</p >
-      <p>无任何编程操作，购买即用。</p >
-      <span class="price">29 USDT</span>
-      立即购买
-    </div>
-
-    <div class="tool-card">
-      <h3>Instagram 自动注册与群发工具</h3>
-      <p>批量创建 Instagram 账号，支持自动发送评论、私信内容，帮助实现网红账号搭建与自动宣传。</p >
-      <p>操作简单，一键启动，轻松控制多个账号。</p >
-      <span class="price">29 USDT</span>
-      立即购买
-    </div>
-
-    <div class="tool-card">
-      <h3>Facebook 批量账号生成器</h3>
-      <p>自动注册 Facebook 多账号并执行私信群发操作，支持加入社群、页面点赞等自动交互。</p >
-      <p>广泛应用于海外市场引流、本地群营销等项目。</p >
-      <span class="price">29 USDT</span>
-      立即购买
-    </div>
-
-  </div>
-</section>
-
-<section class="tool-section">
-  <h2>专区二：智能用户采集系统（39 / 49 USDT）</h2>
-  <div class="tool-grid">
-
-    <div class="tool-card">
-      <h3>多平台关键词采集工具</h3>
-      <p>输入任意关键词，即可在 7 大主流平台自动采集相关用户数据：</p >
+    <div class="card">
+      <h3>Telegram 批量账号生成器 & 群发系统</h3>
       <ul>
-        <li>Telegram</li>
-        <li>Reddit</li>
-        <li>Twitter</li>
-        <li>TikTok</li>
-        <li>YouTube</li>
-        <li>Google</li>
-        <li>Quora</li>
+        <li>自动注册账号、进群、私信群成员，效率远超人工操作</li>
+        <li>搭配关键词采集器，精准打击目标人群，实现高效引流</li>
+        <li>适合微商、电商、自媒体、推广团队使用</li>
       </ul>
-      <p>可导出精准用户列表，用于引流推广、群发私信、邮件营销等自动化操作。</p >
-      <span class="price">39 USDT</span>
-      立即购买
+      <button onclick="location.href='pay.html?product=telegram'">立即购买 - 29 USDT</button>
     </div>
 
-    <div class="tool-card">
-      <h3>评论与点赞用户采集系统</h3>
-      <p>自动抓取以下平台的真实互动用户（评论 / 点赞行为）：</p >
+    <div class="card">
+      <h3>TikTok 批量账号生成器 & 群发系统</h3>
       <ul>
-        <li>Telegram 频道点赞用户</li>
-        <li>Reddit 热门帖子评论用户</li>
-        <li>YouTube 视频评论用户</li>
+        <li>自动注册账号，批量登录并执行点赞、评论、引流操作</li>
+        <li>支持 Outlook 邮箱注册，自动配置资料，批量完成操作</li>
+        <li>适合海外投流、内容洗稿、电商营销推广</li>
       </ul>
-      <p>这些用户为高活跃目标，适合精准私信引流、话术推广、引导加群等变现方式。</p >
-      <span class="price">49 USDT</span>
-      立即购买
+      <button onclick="location.href='pay.html?product=tiktok'">立即购买 - 29 USDT</button>
     </div>
 
-  </div>
-</section>
+    <div class="card">
+      <h3>Twitter 批量账号生成器 & 群发系统</h3>
+      <ul>
+        <li>自动注册账号并执行发推、评论、点赞、@目标用户操作</li>
+        <li>用于加密行业、空投宣传、海外流量曝光极为有效</li>
+        <li>支持自定义文案模板，实现批量个性化输出</li>
+      </ul>
+      <button onclick="location.href='pay.html?product=twitter'">立即购买 - 29 USDT</button>
+    </div>
 
-<footer>
-  <p>本站所售工具为独立 `.exe` 执行程序，操作全程自动化，适合0基础用户使用。</p >
-  <p>付款后系统将在30秒内识别到账并跳转至下载页面，无需等待。</p >
-</footer>
+    <div class="card">
+      <h3>Instagram 批量账号生成器 & 群发系统</h3>
+      <ul>
+        <li>注册账号并自动关注、评论、点赞指定用户或话题</li>
+        <li>常用于打造爆款账号矩阵、导流私信、高转化率转化</li>
+        <li>支持全自动运行，无需干预</li>
+      </ul>
+      <button onclick="location.href='pay.html?product=instagram'">立即购买 - 29 USDT</button>
+    </div>
+
+    <div class="card">
+      <h3>Facebook 批量账号生成器 & 群发系统</h3>
+      <ul>
+        <li>全自动注册 + 加群 + 评论发帖 + 群发好友</li>
+        <li>适合跨境电商、Facebook 社群运营者快速推广产品</li>
+        <li>批量执行，节省时间，操作稳定</li>
+      </ul>
+      <button onclick="location.href='pay.html?product=facebook'">立即购买 - 29 USDT</button>
+    </div>
+  </section>
+
+  <!-- 专区二 -->
+  <section class="zone">
+    <h2>专区二：智能用户采集系统</h2>
+
+    <div class="card">
+      <h3>多平台关键词采集器</h3>
+      <ul>
+        <li>支持 Telegram、Reddit、Twitter、TikTok、YouTube、Google、Quora</li>
+        <li>输入关键词自动抓取相关用户信息，批量导出可用数据</li>
+        <li>配合群发系统使用，实现 1:1 精准引流</li>
+      </ul>
+      <button onclick="location.href='pay.html?product=keywords'">立即购买 - 39 USDT</button>
+    </div>
+
+    <div class="card">
+      <h3>点赞评论用户采集器</h3>
+      <ul>
+        <li>支持 Telegram、Reddit、YouTube 三大主流平台</li>
+        <li>采集点赞和评论过的真实互动用户，真实度高、活跃度高</li>
+        <li>搭配群发器，极大提升引流质量与转化率</li>
+      </ul>
+      <button onclick="location.href='pay.html?product=engagers'">立即购买 - 49 USDT</button>
+    </div>
+  </section>
+
+  <!-- 底部说明 -->
+  <footer>
+    <div class="footer-content">
+      <p><strong>发货流程：</strong>所有工具均为 .exe 格式文件，付款后页面将自动识别到账并跳转至对应下载页面，无需等待。</p >
+      <p><strong>使用方式：</strong>解压下载包，直接双击运行软件，即可根据说明完成全部操作。无需修改代码，无需命令行操作。</p >
+      <p><strong>服务理念：</strong>本网站致力于打造专业级账号生成与用户采集自动化系统，所有工具均为实测可用，稳定高效，适合严肃项目部署。</p >
+    </div>
+  </footer>
 
 </body>
 </html>

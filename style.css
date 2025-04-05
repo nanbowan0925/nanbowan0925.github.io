@@ -1,4 +1,4 @@
-/* 基础重置与通用字体 */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,14 +6,33 @@
 }
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background: #0f0f1a;
   color: #f0f0f0;
-  background-attachment: fixed;
-  overflow-x: hidden;
   line-height: 1.6;
+  overflow-x: hidden;
+  background-image: radial-gradient(circle at 20% 20%, rgba(0,255,255,0.05), transparent),
+                    radial-gradient(circle at 80% 80%, rgba(255,0,255,0.05), transparent);
+  animation: backgroundShift 60s infinite alternate linear;
+}
+@keyframes backgroundShift {
+  0% { background-position: 0 0, 100% 100%; }
+  100% { background-position: 100% 0, 0 100%; }
 }
 
-/* 弹窗通知 */
+/* 标题动效 */
+h1, h2, h3 {
+  text-align: center;
+  background: linear-gradient(90deg, #00c3ff, #ff00cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFlow 6s infinite alternate ease-in-out;
+}
+@keyframes textFlow {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.3); }
+}
+
+/* 弹窗 */
 .popup {
   display: none;
   position: fixed;
@@ -29,192 +48,132 @@ body {
   border-radius: 10px;
   padding: 30px;
   text-align: center;
-  width: 90%;
-  max-width: 400px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
 }
 .popup-content button {
   background: #00c3ff;
   color: #fff;
   padding: 10px 25px;
+  margin-top: 15px;
   border: none;
   border-radius: 5px;
   transition: 0.3s ease;
 }
 .popup-content button:hover {
-  background: #009ec7;
+  background: #ff00cc;
 }
 
 /* 顶部封面 */
 .hero {
   padding: 100px 10%;
   text-align: center;
-  background: linear-gradient(145deg, #011627, #142f45);
-}
-.hero h1 {
-  font-size: 42px;
-  color: #00c3ff;
+  background: linear-gradient(145deg, #0a0a15, #1f1f2e);
 }
 .hero .tagline {
   font-size: 20px;
-  margin-top: 15px;
-  color: #8fe3ff;
+  color: #00c3ff;
+  margin-top: 10px;
 }
 .hero .mission {
-  margin-top: 20px;
-  color: #c2e9fb;
+  color: #cccccc;
+  margin-top: 15px;
 }
 .hero-divider {
-  margin-top: 50px;
-  height: 4px;
   width: 80px;
-  background: #00c3ff;
-  margin-left: auto;
-  margin-right: auto;
+  height: 4px;
+  background: #ff00cc;
+  margin: 30px auto 0;
   border-radius: 2px;
 }
 
 /* 使用流程 */
-.process {
-  padding: 60px 10%;
-  text-align: center;
-}
-.process h2 {
-  margin-bottom: 30px;
-  color: #00c3ff;
-}
 .process ol {
-  max-width: 600px;
-  margin: 0 auto;
-  font-size: 18px;
+  max-width: 700px;
+  margin: 30px auto;
   background: rgba(255,255,255,0.05);
   padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,255,255,0.1);
-  text-align: left;
+  border-radius: 12px;
+  border-left: 5px solid #00c3ff;
+  box-shadow: 0 0 20px rgba(255,0,255,0.1);
+  font-size: 17px;
 }
 
-/* 模块分区 */
-.zone-intro {
-  padding: 60px 10%;
-  background: rgba(255,255,255,0.03);
-  text-align: center;
-}
-.zone-intro h2 {
-  color: #00c3ff;
-  margin-bottom: 15px;
-}
-.zone-intro p {
-  color: #b8e7ff;
-}
-
-/* 工具卡片区 */
+/* 工具卡片动效 */
 .zone {
   padding: 60px 10%;
 }
 .card {
-  background: rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.02);
   padding: 30px;
-  margin: 30px 0;
-  border-radius: 10px;
+  border-radius: 15px;
+  margin: 40px 0;
   box-shadow: 0 0 20px rgba(0,255,255,0.1);
+  border: 1px solid rgba(0,255,255,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: floatUp 6s ease-in-out infinite alternate;
 }
 .card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 0 40px rgba(0,255,255,0.3);
+  box-shadow: 0 0 50px rgba(0,255,255,0.4);
 }
-.card h3 {
-  color: #7fdbff;
-  margin-bottom: 15px;
-}
-.card ul {
-  list-style: disc;
-  padding-left: 20px;
+@keyframes floatUp {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-5px); }
 }
 .card button {
-  background: #00c3ff;
-  border: none;
-  color: #fff;
+  margin-top: 20px;
   padding: 12px 30px;
   font-size: 16px;
-  margin-top: 20px;
-  border-radius: 6px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00c3ff, #ff00cc);
+  color: white;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s;
+  box-shadow: 0 0 15px rgba(255,0,255,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 .card button:hover {
-  background: #009ec7;
   transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0,255,255,0.5);
 }
 
-/* 适用人群模块 */
-.who-for {
-  padding: 60px 10%;
-  background: rgba(255,255,255,0.03);
-}
+/* 适用人群 */
 .benefit-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
 }
 .benefit-card {
-  background: rgba(255,255,255,0.04);
   padding: 25px;
-  border-radius: 10px;
-  text-align: center;
-  border: 1px solid rgba(0,255,255,0.1);
-  box-shadow: inset 0 0 10px rgba(0,255,255,0.05);
-}
-
-/* 为什么选择我们 */
-.why-us {
-  padding: 60px 10%;
-}
-.why-us h2 {
-  text-align: center;
-  color: #00c3ff;
-}
-.why-us ul {
-  max-width: 800px;
-  margin: 0 auto;
+  border-radius: 12px;
   background: rgba(255,255,255,0.03);
-  padding: 30px;
-  border-radius: 10px;
-  font-size: 17px;
-  line-height: 1.8;
-  border-left: 5px solid #00c3ff;
+  border: 1px solid rgba(0,255,255,0.1);
+  box-shadow: inset 0 0 20px rgba(255,0,255,0.05);
+  transition: 0.3s ease;
+}
+.benefit-card:hover {
+  background: rgba(0,255,255,0.05);
+  box-shadow: 0 0 25px rgba(255,0,255,0.2);
 }
 
-/* FAQ 常见问题 */
-.faq {
-  padding: 60px 10%;
-}
-.faq h2 {
-  text-align: center;
-  color: #00c3ff;
-  margin-bottom: 30px;
-}
+/* FAQ */
 .faq-item {
+  background: rgba(255,255,255,0.03);
+  border-left: 4px solid #00c3ff;
+  padding: 20px 30px;
   margin: 20px auto;
   max-width: 800px;
-  background: rgba(255,255,255,0.04);
-  padding: 20px 30px;
-  border-left: 3px solid #00c3ff;
   border-radius: 10px;
-}
-.faq-item h4 {
-  color: #8fe3ff;
-  margin-bottom: 10px;
+  box-shadow: 0 0 15px rgba(0,255,255,0.1);
 }
 
-/* 底部说明 */
+/* 底部 */
 footer {
-  background: #0e1d2c;
-  padding: 50px 10%;
+  background: #0c0c1f;
   text-align: center;
-  color: #ccc;
-  font-size: 15px;
+  padding: 60px 10%;
+  font-size: 14px;
+  color: #bbb;
 }
 footer p {
   margin-bottom: 10px;

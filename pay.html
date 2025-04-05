@@ -107,11 +107,6 @@
     }
   </style>
   <script>
-    function getQueryParam(name) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(name);
-    }
-
     function submitForm(event) {
       const txid = document.getElementById("txid").value.trim();
       if (!txid) {
@@ -119,8 +114,6 @@
         event.preventDefault();
         return false;
       }
-      const product = getQueryParam("product");
-      document.getElementById("product").value = product;
       return true;
     }
 
@@ -141,7 +134,7 @@
     </div>
 
     <form action="http://38.60.250.63:8008/verify" method="POST" onsubmit="return submitForm(event)">
-      <input type="hidden" name="product" id="product" value="">
+      <input type="hidden" name="product" value="">
       <label for="txid">请输入交易哈希（TXID）</label>
       <input type="text" name="txid" id="txid" placeholder="示例：a6d7f4...." required />
       <button type="submit">我已付款，确认下载</button>

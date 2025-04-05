@@ -1,142 +1,86 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>自动脚本商城 - 付款页面</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .payment-box {
-      max-width: 800px;
-      margin: 60px auto;
-      background: rgba(255,255,255,0.05);
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,255,255,0.2);
-    }
-    .payment-box h2 {
-      text-align: center;
-      color: #00ffe5;
-      margin-bottom: 20px;
-    }
-    .payment-details p {
-      font-size: 1.1em;
-      margin-bottom: 10px;
-    }
-    .footer-text {
-      text-align: center;
-      margin-top: 50px;
-      color: #888;
-      font-size: 0.9em;
-    }
-    .buy-button {
-      margin-top: 10px;
-    }
-    .wallet-box {
-      text-align: center;
-      margin-top: 30px;
-      padding: 20px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(0,255,255,0.1);
-      border-radius: 10px;
-    }
-    .notice-box {
-      margin-top: 40px;
-      background: rgba(255,255,255,0.03);
-      border-left: 4px solid #00ffe5;
-      padding: 20px;
-      border-radius: 8px;
-      font-size: 1em;
-      line-height: 1.7;
-      color: #ccc;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>支付页面 | 自动发货系统</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="header">
-  <h1>自动脚本商城 - 付款页面</h1>
-</header>
+  <!-- 顶部封面介绍 -->
+  <section class="hero">
+    <h1>支付页面</h1>
+    <p class="tagline">确认商品信息后请付款，系统将自动识别到账并跳转至下载页面</p >
+    <p class="mission">请确保付款金额准确，并保留交易哈希</p >
+    <div class="hero-divider"></div>
+  </section>
 
-<div class="payment-box">
-  <h2>请完成付款</h2>
+  <!-- 商品信息卡片 -->
+  <section class="zone">
+    <div class="card">
+      <h3>你即将购买的工具</h3>
+      <p id="product-name" style="font-size: 18px; font-weight: bold; color: #8fe3ff;">加载中...</p >
+      <p>价格：<span id="product-price" style="color:#ff00cc;">--</span> USDT</p >
+      <p>付款方式：TRC20（USDT）</p >
+      <p>请使用以下地址完成付款，付款后系统将自动检测到账并提供下载</p >
 
-  <div class="payment-details">
-    <p><strong>产品类型：</strong><span id="product">加载中...</span></p >
-    <p><strong>接收邮箱：</strong><span id="email">加载中...</span></p >
-    <p><strong>付款金额：</strong><span id="amount">加载中...</span></p >
-  </div>
+      <div style="margin: 20px 0; background:#111928; padding: 15px; border-radius: 10px;">
+        <p style="word-break: break-all;"><strong>收款地址：</strong>TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</p >
+      </div>
 
-  <div class="wallet-box">
-    <p>请将 USDT (TRC20) 转账至以下地址：</p >
-    <p><strong id="wallet">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</strong></p >
-    <button onclick="copyWallet()" class="buy-button">复制收款地址</button>
-  </div>
+      <p>付款后请等待页面自动跳转，无需手动操作。</p >
+      <button style="margin-top: 30px;" onclick="location.href='index.html'">返回首页</button>
+    </div>
+  </section>
 
-  <div class="payment-details" style="margin-top: 30px;">
-    <p>付款完成后，请填写链上交易哈希（TxID）：</p >
-    <input type="text" id="txid" placeholder="输入交易哈希 TxID" style="width: 100%; padding: 10px; border-radius: 6px; margin-bottom: 10px;">
-    <button class="buy-button">我已付款，提交订单</button>
-  </div>
+  <!-- 技术说明 -->
+  <section class="faq">
+    <div class="faq-item">
+      <h4>支付后多久可以下载？</h4>
+      <p>系统将实时监听 TRC20 网络转账记录，识别到账后自动跳转至脚本下载页面。</p >
+    </div>
+    <div class="faq-item">
+      <h4>我需要截图或填写订单信息吗？</h4>
+      <p>不需要，系统将自动识别 USDT 链上交易。</p >
+    </div>
+    <div class="faq-item">
+      <h4>我付款了但页面未跳转怎么办？</h4>
+      <p>请确认是否复制了完整地址、使用 TRC20 网络，并检查转账哈希。</p >
+    </div>
+  </section>
 
-  <!-- 新增自动发货说明区域 -->
-  <div class="notice-box">
-    <strong>关于自动发货说明：</strong><br>
-    系统会自动监听链上转账记录，当检测到您的钱包转账成功，且提交了对应的交易哈希（TxID）和邮箱后，<br>
-    将在<strong>1分钟内自动发货</strong>。脚本将以附件形式发送至您填写的邮箱地址，无需等待。<br>
-    整个流程全自动处理，请放心付款。
-  </div>
-</div>
+  <!-- 底部说明 -->
+  <footer>
+    <div class="footer-content">
+      <p><strong>发货方式：</strong>系统全自动监听 USDT 转账，无需联系任何人</p >
+      <p><strong>付款网络：</strong>仅支持 TRC20，其他网络付款将无法识别</p >
+    </div>
+  </footer>
 
-<div class="footer-text">
-  <p>© 2025 自动脚本商城 - 所有权利保留</p >
-</div>
+  <script>
+    // 动态读取 URL 参数展示产品名与价格
+    const query = new URLSearchParams(window.location.search);
+    const product = query.get("product");
 
-<script>
-  function getParam(name) {
-    const url = new URL(window.location.href);
-    return decodeURIComponent(url.searchParams.get(name) || "");
-  }
+    const products = {
+      telegram: { name: "Telegram 注册与群发工具", price: 29 },
+      tiktok: { name: "TikTok 注册与群发工具", price: 29 },
+      twitter: { name: "Twitter 注册与群发工具", price: 29 },
+      instagram: { name: "Instagram 注册与群发工具", price: 29 },
+      facebook: { name: "Facebook 注册与群发工具", price: 29 },
+      keywords: { name: "多平台关键词采集器", price: 39 },
+      engagers: { name: "点赞评论用户采集器", price: 49 }
+    };
 
-  const productKey = getParam("product");
-  const email = getParam("email");
-  const wallet = document.getElementById("wallet").textContent;
-
-  const productMap = {
-    telegram_full: "Telegram 自动注册 + 群发脚本",
-    tiktok_full: "TikTok 自动注册 + 群发脚本",
-    twitter_full: "Twitter 自动注册 + 群发脚本",
-    instagram_full: "Instagram 自动注册 + 群发脚本",
-    facebook_full: "Facebook 自动注册 + 群发脚本",
-    scraper_telegram: "Telegram 用户关键词采集脚本",
-    scraper_reddit: "Reddit 热帖评论者采集脚本",
-    scraper_twitter: "Twitter 推文 + 用户名采集脚本",
-    scraper_tiktok: "TikTok 视频发布者采集脚本",
-    scraper_youtube: "YouTube 评论者采集脚本",
-    scraper_quora: "Quora 问答用户采集脚本",
-    scraper_google: "Google 搜索关键词采集脚本",
-    tiktok_live_ai: "TikTok AI 无人直播挂机脚本"
-  };
-
-  document.getElementById("product").textContent = productMap[productKey] || productKey;
-  document.getElementById("email").textContent = email;
-
-  // 修复金额显示错误：强匹配 key 名称，默认 29，特例 49
-  let amount = "29";
-  if (productKey === "tiktok_live_ai") {
-    amount = "49";
-  }
-  if (!productMap[productKey]) {
-    amount = "待确认";
-  }
-  document.getElementById("amount").textContent = `${amount} USDT`;
-
-  function copyWallet() {
-    navigator.clipboard.writeText(wallet).then(() => {
-      alert("钱包地址已复制！");
-    });
-  }
-</script>
+    if (products[product]) {
+      document.getElementById("product-name").textContent = products[product].name;
+      document.getElementById("product-price").textContent = products[product].price;
+    } else {
+      document.getElementById("product-name").textContent = "未知工具";
+      document.getElementById("product-price").textContent = "--";
+    }
+  </script>
 
 </body>
 </html>

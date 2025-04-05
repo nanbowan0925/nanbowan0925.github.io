@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>支付页面 | 自动发货系统</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- 顶部区域 -->
 <section class="hero">
   <h1>确认付款信息</h1>
-  <p class="tagline">系统自动识别转账并发货，请严格按金额付款</p >
+  <p class="tagline">请按提示付款并填写交易哈希，系统自动发货</p >
   <p class="mission">网络：TRC20（USDT）</p >
   <div class="hero-divider"></div>
 </section>
 
-<!-- 支付信息卡片 -->
 <section class="zone">
   <div class="card">
     <h3>你正在购买：</h3>
     <p id="product-name" style="font-size: 18px; color: #8fe3ff; font-weight: bold;">加载中...</p >
     <p>付款金额：<span id="product-price" style="color:#ff00cc; font-size:18px;">--</span> USDT</p >
 
-    <hr style="margin: 20px 0; border-color: rgba(255,255,255,0.1);">
+    <hr style="margin: 20px 0; border-color: rgba(255,255,255,0.1);" />
 
-    <p>请将 USDT 转至以下收款地址：</p >
+    <p>请将 USDT 转至以下地址：</p >
     <div style="background:#111928; padding: 15px; border-radius: 10px; word-break: break-all;">
       <code id="wallet-address">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</code>
     </div>
@@ -33,43 +31,56 @@
 
     <div style="margin-top: 30px;">
       <p style="margin-bottom: 8px;">付款后请输入交易哈希：</p >
-      <form id="hash-form" action="http://38.60.250.63:8008/verify" method="POST">
-        <input type="text" name="hash" id="txhash" placeholder="请输入付款后的交易哈希"
-               style="padding: 12px; width: 100%; border-radius: 8px; font-size: 15px; background: #1c2733; border: none; color: #eee; margin-bottom: 12px;">
-        <input type="hidden" name="product" id="product-input" value="">
+      <form id="hash-form" action="https://naobowan/verify" method="POST" onsubmit="return checkHash()">
+        <input type="text" name="hash" id="txhash" placeholder="请输入交易哈希"
+          style="padding: 12px; width: 100%; border-radius: 8px; font-size: 15px; background: #1c2733; border: none; color: #eee; margin-bottom: 12px;" />
+        <input type="hidden" name="product" id="product-input" value="" />
         <button type="submit">提交并验证</button>
       </form>
     </div>
   </div>
 </section>
 
-<!-- 常见问题 -->
 <section class="faq">
   <div class="faq-item">
     <h4>付款后多久可以下载？</h4>
-    <p>系统自动识别 TRC20 转账记录，一般 5 秒内完成跳转。</p >
+    <p>系统会在 5-10 秒内识别转账到账，立即跳转下载。</p >
   </div>
   <div class="faq-item">
-    <h4>如何获取交易哈希？</h4>
-    <p>在钱包的交易详情页内，点击“交易 ID”即可复制哈希。</p >
+    <h4>怎么获取交易哈希？</h4>
+    <p>打开钱包转账记录详情，点击“交易 ID”复制即可。</p >
   </div>
   <div class="faq-item">
-    <h4>付款失败或误转怎么办？</h4>
-    <p>请确保使用 TRC20 网络，地址与金额正确，其他网络转账将丢失。</p >
+    <h4>未到账或误转怎么办？</h4>
+    <p>请确保使用 TRC20 网络，地址金额正确，其他网络将丢失。</p >
   </div>
 </section>
 
-<!-- 底部说明 -->
 <footer>
   <div class="footer-content">
     <p><strong>付款地址：</strong> TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</p >
-    <p><strong>网络要求：</strong> TRC20（仅支持）</p >
-    <p><strong>发货说明：</strong> 系统自动检测到账，无需手动联系</p >
+    <p><strong>网络要求：</strong> TRC20（USDT）</p >
+    <p><strong>系统说明：</strong> 自动识别到账，无需手动处理</p >
   </div>
 </footer>
 
-<!-- 脚本逻辑：展示产品名称与金额 + 复制地址 + 设置隐藏字段 -->
 <script>
+  function copyAddress() {
+    const address = document.getElementById("wallet-address").textContent;
+    navigator.clipboard.writeText(address).then(() => {
+      alert("收款地址已复制！");
+    });
+  }
+
+  function checkHash() {
+    const hash = document.getElementById("txhash").value.trim();
+    if (hash.length < 20) {
+      alert("请输入有效的交易哈希！");
+      return false;
+    }
+    return true;
+  }
+
   const query = new URLSearchParams(window.location.search);
   const product = query.get("product");
 
@@ -89,13 +100,6 @@
     document.getElementById("product-input").value = product;
   } else {
     document.getElementById("product-name").textContent = "未知工具";
-  }
-
-  function copyAddress() {
-    const address = document.getElementById("wallet-address").textContent;
-    navigator.clipboard.writeText(address).then(() => {
-      alert("收款地址已复制！");
-    });
   }
 </script>
 

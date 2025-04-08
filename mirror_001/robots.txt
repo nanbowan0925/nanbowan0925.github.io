@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://nbw0925.wuaze.com/sitemap.xml

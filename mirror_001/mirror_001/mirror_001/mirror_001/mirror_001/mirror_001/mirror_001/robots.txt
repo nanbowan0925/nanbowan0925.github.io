@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: http://nbw0925.wuaze.com/mirror_001/sitemap.xml

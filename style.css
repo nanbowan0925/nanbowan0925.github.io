@@ -1,152 +1,156 @@
+/* 基础设置 */
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+  background-color: #0f0f0f;
+  color: #eaeaea;
   margin: 0;
   padding: 0;
-  background-color: #fdfcf8;
-  color: #222;
 }
 
-header {
-  background: #1a1a1a;
-  color: #fff;
+/* 页眉 */
+.header-section {
+  background: linear-gradient(135deg, #111, #222);
+  color: #f2f2f2;
   text-align: center;
-  padding: 40px 20px;
+  padding: 50px 20px;
+  border-bottom: 2px solid #444;
 }
-
 .logo {
-  font-size: 2rem;
-  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffd700;
 }
-
 .main-title {
-  font-family: Georgia, serif;
   font-size: 1.4rem;
-  margin-top: 10px;
+  margin-top: 12px;
 }
-
 .subtitle {
   font-size: 1rem;
-  opacity: 0.8;
+  color: #bbbbbb;
+  margin-top: 8px;
 }
 
+/* 英雄图 */
 .hero-section {
   text-align: center;
   padding: 40px 20px;
-  background: #f0f0f0;
+  background: radial-gradient(ellipse at center, #1a1a1a 0%, #0a0a0a 100%);
 }
-
 .hero-image {
   max-width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
-
 .hero-text {
   font-style: italic;
   margin-top: 20px;
+  color: #dcdcdc;
 }
-
 .price {
   font-size: 1.2rem;
+  color: #ffd700;
   margin-top: 20px;
 }
 
+/* 高科技风格按钮 */
 .cta-button {
   display: inline-block;
-  margin-top: 20px;
-  background: #e2b714;
-  color: black;
-  padding: 12px 24px;
-  border-radius: 6px;
-  text-decoration: none;
+  margin-top: 25px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #ffd700, #f5b000);
+  color: #000;
   font-weight: bold;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+  transition: all 0.25s ease-in-out;
 }
-
 .cta-button:hover {
-  background: #d1a300;
-  color: white;
+  background: #fff8dc;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.6);
+  transform: scale(1.05);
 }
 
-.product-details-section,
-.use-case-section,
-.faq-section,
-.mystical-voice-section {
+/* 内容区块 */
+section {
   padding: 40px 20px;
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
 }
-
 .section-title {
-  font-family: Georgia, serif;
-  font-size: 1.4rem;
-  margin-bottom: 20px;
+  font-size: 1.3rem;
+  color: #fff;
+  border-bottom: 1px solid #555;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
 }
 
+/* 产品列表 */
 .product-list,
 .use-case-list {
-  list-style-type: disc;
+  list-style-type: square;
   padding-left: 20px;
+  color: #cccccc;
 }
 
+/* 图片展示 */
 .product-images {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 30px;
 }
-
 .product-image {
-  max-width: 30%;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  width: 220px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
 }
 
+/* 神性段落 */
 .mystical-text {
   font-style: italic;
   text-align: center;
+  font-size: 1.1rem;
+  color: #e0e0e0;
 }
 
+/* FAQ区块 */
 .faq-list dt {
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 20px;
   cursor: pointer;
+  color: #ffd700;
 }
-
 .faq-list dd {
-  margin-top: 5px;
+  margin-left: 0;
+  padding: 8px 0 16px 0;
+  display: none;
+  color: #cccccc;
 }
 
+/* 页脚 */
 .footer-section {
-  background: #eee;
+  background: #1c1c1c;
+  color: #999;
   text-align: center;
-  padding: 30px 20px;
   font-size: 0.9rem;
+  padding: 30px 20px;
+  border-top: 1px solid #333;
 }
-
-/* 响应式设计 */
-@media (max-width: 768px) {
- .product-image {
-    max-width: 45%;
-  }
-
- .hero-text,
- .mystical-text {
-    font-size: 0.9rem;
-  }
-
- .main-title {
-    font-size: 1.2rem;
-  }
-
- .section-title {
-    font-size: 1.2rem;
-  }
+.footer-links a {
+  color: #aaa;
+  text-decoration: none;
+  margin: 0 10px;
 }
-
-@media (max-width: 480px) {
- .product-image {
-    max-width: 100%;
-  }
+.footer-links a:hover {
+  color: #ffd700;
+}
+.contact-info {
+  margin-top: 10px;
+}
+.disclaimer {
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 8px;
 }

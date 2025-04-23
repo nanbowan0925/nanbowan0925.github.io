@@ -294,3 +294,56 @@ body::before {
     filter: brightness(1.1) saturate(1.5);
   }
 }
+/* ===== 动态 · 银河裂缝星云背景（纯 CSS 实现） ===== */
+.galaxy-crack {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, rgba(20,20,30,0.6) 0%, rgba(0,0,0,0.9) 80%);
+  pointer-events: none;
+  z-index: -9;
+}
+
+.galaxy-crack::before,
+.galaxy-crack::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255,255,255,0.03) 0deg,
+    rgba(255,255,255,0.03) 4deg,
+    rgba(100,100,150,0.06) 4deg,
+    rgba(100,100,150,0.06) 8deg
+  );
+  animation: crack-spin 80s linear infinite;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.galaxy-crack::after {
+  background: radial-gradient(ellipse at center,
+    rgba(250, 250, 250, 0.05) 0%,
+    rgba(200, 200, 255, 0.04) 25%,
+    rgba(0, 0, 0, 0.0) 60%
+  );
+  animation: crack-pulse 8s ease-in-out infinite;
+  opacity: 0.5;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+@keyframes crack-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes crack-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; }
+  50% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.8; }
+}

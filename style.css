@@ -1,86 +1,152 @@
-/* 全局样式 */
 body {
-  font-family: sans-serif;
-  background: #fdfcf8;
-  color: #222;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.6; /* 增加行高，提升可读性 */
+  background-color: #fdfcf8;
+  color: #222;
 }
 
-/* 头部样式 */
 header {
-  background: #111;
-  color: white;
-  padding: 30px;
+  background: #1a1a1a;
+  color: #fff;
   text-align: center;
+  padding: 40px 20px;
 }
 
-/* 副标题样式 */
-.subtitle {
-  font-size: 1.2rem;
+.logo {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.main-title {
+  font-family: Georgia, serif;
+  font-size: 1.4rem;
   margin-top: 10px;
 }
 
-/* 产品展示部分样式 */
-.product {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.subtitle {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.hero-section {
+  text-align: center;
   padding: 40px 20px;
-  text-align: center; /* 让产品描述内的文字默认居中，然后在.product-description里调整为居左 */
+  background: #f0f0f0;
 }
 
-/* 产品图片样式 */
-.product-img {
+.hero-image {
   max-width: 100%;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加轻微的阴影效果，提升视觉层次感 */
-  border-radius: 8px; /* 让图片边角更圆润 */
-  transition: transform 0.3s ease; /* 添加过渡效果，让鼠标悬停时的动画更流畅 */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.product-img:hover {
-  transform: scale(1.05); /* 鼠标悬停时图片稍微放大 */
+.hero-text {
+  font-style: italic;
+  margin-top: 20px;
 }
 
-/* 产品描述样式 */
-.product-description {
-  max-width: 600px;
-  text-align: left;
+.price {
+  font-size: 1.2rem;
+  margin-top: 20px;
 }
 
-/* 购买按钮样式 */
-.buy-btn {
+.cta-button {
   display: inline-block;
   margin-top: 20px;
-  padding: 12px 24px;
-  background-color: #e2b714;
+  background: #e2b714;
   color: black;
+  padding: 12px 24px;
+  border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
-  border-radius: 6px;
-  transition: background-color 0.3s ease; /* 添加背景颜色过渡效果 */
 }
 
-.buy-btn:hover {
-  background-color: #d1a300; /* 鼠标悬停时按钮背景颜色变深 */
+.cta-button:hover {
+  background: #d1a300;
+  color: white;
 }
 
-/* 底部样式 */
-footer {
-  background: #f0f0f0;
+.product-details-section,
+.use-case-section,
+.faq-section,
+.mystical-voice-section {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.section-title {
+  font-family: Georgia, serif;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.product-list,
+.use-case-list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.product-images {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.product-image {
+  max-width: 30%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.mystical-text {
+  font-style: italic;
   text-align: center;
-  padding: 20px;
+}
+
+.faq-list dt {
+  font-weight: bold;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.faq-list dd {
+  margin-top: 5px;
+}
+
+.footer-section {
+  background: #eee;
+  text-align: center;
+  padding: 30px 20px;
   font-size: 0.9rem;
 }
 
-/* 响应式设计，当屏幕宽度小于 600px 时调整样式 */
-@media (max-width: 600px) {
- .product-description {
-    padding: 0 10px; /* 减少内边距，适应小屏幕 */
+/* 响应式设计 */
+@media (max-width: 768px) {
+ .product-image {
+    max-width: 45%;
   }
- .product-img {
-    width: 100%; /* 让图片在小屏幕下占满宽度 */
+
+ .hero-text,
+ .mystical-text {
+    font-size: 0.9rem;
+  }
+
+ .main-title {
+    font-size: 1.2rem;
+  }
+
+ .section-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+ .product-image {
+    max-width: 100%;
   }
 }

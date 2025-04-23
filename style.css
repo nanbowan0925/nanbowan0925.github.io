@@ -21,7 +21,7 @@ body {
 }
 
 /* 背景星点流光层 */
-.background-overlay .stars {
+.background-overlay.stars {
   position: absolute;
   top: 0;
   left: 0;
@@ -37,7 +37,7 @@ body {
 }
 
 /* 流星效果 */
-.background-overlay .meteor {
+.background-overlay.meteor {
   position: absolute;
   width: 1px;
   height: 60px;
@@ -49,15 +49,15 @@ body {
 
 @keyframes meteor-move {
   from {
-    transform: translateX(calc(-100% * var(--meteor-start))) translateY(0);
+    transform: translateX(calc(-100% * var(--meteor-start, 0))) translateY(0);
   }
   to {
-    transform: translateX(calc(100% * var(--meteor-end))) translateY(100vh);
+    transform: translateX(calc(100% * var(--meteor-end, 1))) translateY(100vh);
   }
 }
 
 /* 星云闪烁效果 */
-.background-overlay .nebula {
+.background-overlay.nebula {
   position: absolute;
   width: 100px;
   height: 100px;
@@ -67,19 +67,19 @@ body {
   z-index: -2;
 }
 
-.background-overlay .nebula:nth-child(1) {
+.background-overlay.nebula:nth-child(1) {
   background: radial-gradient(circle, rgba(155, 89, 182, 0.8), rgba(0, 0, 0, 0));
   left: 20%;
   top: 30%;
 }
 
-.background-overlay .nebula:nth-child(2) {
+.background-overlay.nebula:nth-child(2) {
   background: radial-gradient(circle, rgba(46, 204, 113, 0.8), rgba(0, 0, 0, 0));
   left: 70%;
   top: 10%;
 }
 
-.background-overlay .nebula:nth-child(3) {
+.background-overlay.nebula:nth-child(3) {
   background: radial-gradient(circle, rgba(231, 76, 60, 0.8), rgba(0, 0, 0, 0));
   left: 40%;
   top: 60%;
@@ -95,7 +95,7 @@ body {
 }
 
 /* 光线波动效果 */
-.background-overlay .wave-light {
+.background-overlay.wave-light {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -177,6 +177,7 @@ body {
   padding: 60px 20px;
   position: relative;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
+  z-index: 1;
 }
 
 .logo {
@@ -239,6 +240,7 @@ body {
   border-radius: 20px;
   margin: 40px 20px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  z-index: 1;
 }
 
 .hero-image {
@@ -264,6 +266,7 @@ body {
 .product-section {
   text-align: center;
   padding: 60px 20px;
+  z-index: 1;
 }
 
 .section-title {
@@ -328,6 +331,7 @@ body {
   border-radius: 20px;
   margin: 40px 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .mystical-text {
@@ -342,6 +346,7 @@ body {
 .usage-section {
   text-align: center;
   padding: 60px 20px;
+  z-index: 1;
 }
 
 /* ========== 页脚样式 ========== */
@@ -350,6 +355,7 @@ body {
   padding: 30px 20px;
   background: rgba(0, 0, 0, 0.8);
   font-size: 0.9rem;
+  z-index: 1;
 }
 
 .footer-links a {

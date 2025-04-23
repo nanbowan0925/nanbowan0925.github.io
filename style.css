@@ -1,3 +1,254 @@
+/* ========= 召唤视觉核心模块 ========= */
+
+.background-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* 阴阳鱼核心旋转 */
+.yin-yang-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 25%, #fff 10%, transparent 11%),
+    radial-gradient(circle at 50% 75%, #000 10%, transparent 11%),
+    conic-gradient(#000 0deg 180deg, #fff 180deg 360deg);
+  transform: translate(-50%, -50%);
+  animation: rotate-yinyang 30s linear infinite;
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+}
+
+/* 背景星光 */
+.cosmic-stars {
+  position: absolute;
+  top: 0; left: 0;
+  width: 300%;
+  height: 300%;
+  background-image: radial-gradient(1px 1px at 30% 40%, rgba(255,255,255,0.06)),
+                    radial-gradient(1px 1px at 70% 20%, rgba(255,255,255,0.04)),
+                    radial-gradient(1px 1px at 10% 90%, rgba(255,255,255,0.05));
+  background-size: 1000px 1000px;
+  animation: stars-move 180s linear infinite;
+  opacity: 0.25;
+}
+
+/* 光圈 */
+.halo-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 700px;
+  height: 700px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 30%, transparent 80%);
+  animation: pulse-ring 8s ease-in-out infinite;
+}
+
+/* 流星 */
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(255,255,255,1), transparent);
+  animation: shooting-star 6s linear infinite;
+  opacity: 0;
+}
+
+/* 八卦符文阵 */
+.bagua-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  animation: rotate-slow 40s linear infinite;
+}
+.bagua-ring .glyph {
+  position: absolute;
+  font-size: 24px;
+  color: #e2b714;
+  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+.bagua-ring .glyph:nth-child(1) { transform: rotate(0deg) translateY(-260px); left: 50%; top: 50%; }
+.bagua-ring .glyph:nth-child(2) { transform: rotate(45deg) translateY(-260px); left: 50%; top: 50%; }
+.bagua-ring .glyph:nth-child(3) { transform: rotate(90deg) translateY(-260px); left: 50%; top: 50%; }
+.bagua-ring .glyph:nth-child(4) { transform: rotate(135deg) translateY(-260px); left: 50%; top: 50%; }
+.bagua-ring .glyph:nth-child(5) { transform: rotate(180deg) translateY(-260px); left: 50%; top: 50%; }
+.bagua-ring .glyph:nth-child(6) { transform: rotate(225deg) translateY(-260px); left: 50%; top: 50%; }
+.bagua-ring .glyph:nth-child(7) { transform: rotate(270deg) translateY(-260px); left: 50%; top: 50%; }
+.bagua-ring .glyph:nth-child(8) { transform: rotate(315deg) translateY(-260px); left: 50%; top: 50%; }
+
+/* 动画 */
+@keyframes rotate-yinyang {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes stars-move {
+  from { background-position: 0 0; }
+  to   { background-position: -1000px 1000px; }
+}
+@keyframes pulse-ring {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+  50%      { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+}
+@keyframes shooting-star {
+  0% { transform: translateX(0) translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateX(2000px) translateY(1000px); opacity: 0; }
+}
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+/* 能量脉络网格 */
+.energy-veins {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 20px),
+              repeating-linear-gradient(-45deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 20px);
+  animation: veins-flow 20s linear infinite;
+  opacity: 0.15;
+  mix-blend-mode: screen;
+}
+
+/* 光之立方体 */
+.light-cube {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 200px;
+  height: 200px;
+  background: rgba(226,183,20,0.08);
+  border: 1px solid rgba(226,183,20,0.2);
+  transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg);
+  animation: cube-glow 6s ease-in-out infinite alternate;
+  box-shadow: 0 0 20px rgba(226,183,20,0.2);
+}
+
+/* 呼吸圈 */
+.pulse-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 40%, transparent 80%);
+  transform: translate(-50%, -50%);
+  animation: breath-pulse 5s ease-in-out infinite;
+}
+
+/* 星图轨道 */
+.orbit-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 900px;
+  height: 900px;
+  border: 1px dashed rgba(255,255,255,0.06);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate-orbit 80s linear infinite;
+  opacity: 0.25;
+}
+
+/* 星座浮现 */
+.constellation-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('https://cdn.pixabay.com/photo/2013/07/13/12/46/constellation-160684_1280.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.04;
+  animation: fade-stars 12s ease-in-out infinite alternate;
+}
+
+/* 卡牌自动召唤闪现 */
+.card-aura-flash {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 400px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,255,255,0.02), transparent 70%);
+  animation: flash-aura 15s ease-in-out infinite;
+}
+
+/* 神兽轮廓浮现 */
+.divine-beast-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('https://i.imgur.com/bRQzK6y.png'); /* 替换为你自己的神兽暗纹图 */
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: overlay;
+  opacity: 0.03;
+  animation: fade-beast 20s ease-in-out infinite alternate;
+}
+
+/* 星体坠落压感 */
+.meteor-impact {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 20%, transparent 80%);
+  transform: translateX(-50%) scale(1);
+  animation: meteor-fall 12s ease-in infinite;
+}
+
+/* ========== 动画组 ========== */
+
+@keyframes veins-flow {
+  from { background-position: 0 0; }
+  to   { background-position: 500px 500px; }
+}
+
+@keyframes cube-glow {
+  0% { box-shadow: 0 0 10px rgba(226,183,20,0.1); }
+  100% { box-shadow: 0 0 40px rgba(226,183,20,0.4); }
+}
+
+@keyframes breath-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes rotate-orbit {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes fade-stars {
+  0% { opacity: 0.01; }
+  100% { opacity: 0.04; }
+}
+
+@keyframes flash-aura {
+  0%, 100% { opacity: 0.03; }
+  50% { opacity: 0.08; }
+}
+
+@keyframes fade-beast {
+  0% { opacity: 0.01; }
+  100% { opacity: 0.04; }
+}
+
+@keyframes meteor-fall {
+  0% { transform: translateX(-50%) translateY(-100px) scale(0.8); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateX(-50%) translateY(900px) scale(1.2); opacity: 0; }
+}
 /* 全局样式 */
 body {
   font-family: "Roboto Slab", serif;

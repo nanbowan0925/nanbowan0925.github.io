@@ -5,113 +5,302 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="A visionary PDF oracle of the 64 sacred hexagrams, inspired by the I Ching. Designed for spiritual seekers, readers, and mystics.">
   <title>Sacred Oracle · 64 Hexagram Digital Deck</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: black;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* 背景层 */
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    /* 星点背景（星河感） */
+    .cosmic-stars {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(#111 1px, transparent 1px), radial-gradient(#222 1px, transparent 1px);
+      background-size: 5px 5px, 8px 8px;
+      animation: twinkle 4s linear infinite;
+      opacity: 0.4;
+    }
+
+    @keyframes twinkle {
+      from { transform: translate(0, 0); }
+      to   { transform: translate(-5%, -5%); }
+    }
+
+    /* 流星动画横向漂移 */
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 100px;
+      background: white;
+      opacity: 0.8;
+      transform: rotate(45deg);
+      animation: shooting 6s linear infinite;
+    }
+
+    @keyframes shooting {
+      from { left: -10%; top: 20%; }
+      to   { left: 110%; top: 80%; }
+    }
+
+    /* 太极核心 + 八卦旋转 */
+    .yin-yang-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(0deg);
+      width: 180px;
+      height: 180px;
+      animation: spin 20s linear infinite;
+    }
+
+    @keyframes spin {
+      0%   { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .yin-yang-core svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .bagua-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      transform: translate(-50%, -50%);
+    }
+
+    .bagua-ring .glyph {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 40px;
+      color: #ffcc00;
+      transform-origin: 50% 150px;
+    }
+
+    .glyph:nth-child(1) { transform: rotate(0deg) translateY(-150px); }
+    .glyph:nth-child(2) { transform: rotate(45deg) translateY(-150px); }
+    .glyph:nth-child(3) { transform: rotate(90deg) translateY(-150px); }
+    .glyph:nth-child(4) { transform: rotate(135deg) translateY(-150px); }
+    .glyph:nth-child(5) { transform: rotate(180deg) translateY(-150px); }
+    .glyph:nth-child(6) { transform: rotate(225deg) translateY(-150px); }
+    .glyph:nth-child(7) { transform: rotate(270deg) translateY(-150px); }
+    .glyph:nth-child(8) { transform: rotate(315deg) translateY(-150px); }
+
+    /* 顶部区域 */
+    .header-section {
+      text-align: center;
+      padding: 60px 20px;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .logo {
+      font-size: 3rem;
+      color: #e2b714;
+      text-shadow: 2px 2px 10px rgba(226, 183, 20, 0.8);
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      color: white;
+      opacity: 0.85;
+    }
+
+    .cta-button {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 1rem;
+      background: #e2b714;
+      color: #000;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(226, 183, 20, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: #ffcc00;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-
-<!-- 背景召唤层 -->
-<div class="background-overlay">
-  <div class="galaxy-crack"></div>
-  <div class="yin-yang-core"></div>
-  <div class="cosmic-stars"></div>
-  <div class="halo-ring"></div>
-  <div class="shooting-star" style="top: 20%; left: -10%; animation-delay: 0s;"></div>
-  <div class="shooting-star" style="top: 40%; left: -20%; animation-delay: 2s;"></div>
-  <div class="shooting-star" style="top: 70%; left: -30%; animation-delay: 4s;"></div>
-  <div class="bagua-ring">
-    <div class="glyph">乾</div>
-    <div class="glyph">兑</div>
-    <div class="glyph">离</div>
-    <div class="glyph">震</div>
-    <div class="glyph">巽</div>
-    <div class="glyph">坎</div>
-    <div class="glyph">艮</div>
-    <div class="glyph">坤</div>
-  </div>
-</div>
-
-<!-- 顶部 -->
-<header class="header-section">
-  <h1 class="logo">Sacred Oracle</h1>
-  <p class="tagline">64 Divine Hexagrams · A Living Code of Spiritual Wisdom</p >
-  <a class="cta-button" href=" ">Buy Now for $64</a >
-</header>
-
-<!-- 英雄图 -->
-<section class="hero-section">
-  < img src="https://cdn.jsdelivr.net/gh/nanbowan0925/naobowan/Hexagram_30_Li_Clarity.jpg" alt="Hexagram Hero" class="hero-image">
-  <p class="hero-text">
-    For millennia, the I Ching has echoed through time — a sacred system of cosmic intelligence.
-    Now reimagined as a downloadable oracle deck, each of the 64 hexagrams becomes a gate to divine alignment.
-  </p >
-</section>
-
-<!-- 产品展示 -->
-<section class="product-section">
-  <h2 class="section-title">What You'll Receive</h2>
-  <ul class="feature-list">
-    <li>64 beautifully designed oracle cards (PDF format)</li>
-    <li>Each card includes symbolic artwork, energy message, and poetic reflection</li>
-    <li>Interpretations rooted in spiritual philosophy, not just fortune telling</li>
-    <li>Use as a daily draw, meditative portal, or reading deck</li>
-    <li class="warn">Digital-only. Final sale. No refunds.</li>
-  </ul>
-  <div class="preview-gallery">
-    <div class="image-block">
-      < img src="https://cdn.jsdelivr.net/gh/nanbowan0925/naobowan/Hexagram_27_Yi_Nourishment.jpg" class="product-img" alt="Hexagram 27">
-      <p class="quote">“You are already being fed. What you nourish within, will feed the cosmos in return.”</p >
+  <!-- 背景动态层 -->
+  <div class="background-overlay">
+    <div class="cosmic-stars"></div>
+    <div class="shooting-star" style="animation-delay: 0s;"></div>
+    <div class="shooting-star" style="animation-delay: 2s; top: 30%;"></div>
+    <div class="shooting-star" style="animation-delay: 4s; top: 60%;"></div>
+    <div class="yin-yang-core">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="black" />
+        <path d="M50,10 A40,40 0 1,1 50,90 A20,20 0 1,0 50,10" fill="white" />
+        <circle cx="50" cy="30" r="5" fill="black" />
+        <circle cx="50" cy="70" r="5" fill="white" />
+      </svg>
     </div>
-    <div class="image-block">
-      < img src="https://cdn.jsdelivr.net/gh/nanbowan0925/naobowan/Hexagram_30_Li_Clarity.jpg" class="product-img" alt="Hexagram 30">
-      <p class="quote">“Let illumination rise from within. Your fire is not for destruction—it is revelation.”</p >
-    </div>
-    <div class="image-block">
-      < img src="https://cdn.jsdelivr.net/gh/nanbowan0925/naobowan/Hexagram_55_Feng_Abundance.jpg" class="product-img" alt="Hexagram 55">
-      <p class="quote">“This is not excess. This is the sacred overflow. You are allowed to shine in fullness.”</p >
+    <div class="bagua-ring">
+      <div class="glyph">乾</div>
+      <div class="glyph">兑</div>
+      <div class="glyph">离</div>
+      <div class="glyph">震</div>
+      <div class="glyph">巽</div>
+      <div class="glyph">坎</div>
+      <div class="glyph">艮</div>
+      <div class="glyph">坤</div>
     </div>
   </div>
-</section>
 
-<!-- 灵性召唤语 -->
-<section class="mystical-section">
-  <p class="mystical-text">
-    You didn’t land here by accident. This oracle sought you.
-    Each hexagram is a cosmic mirror, reflecting where you are — and where you are becoming.
-    Step in. The symbols will speak.
-  </p >
-</section>
+  <!-- 顶部区域 -->
+  <header class="header-section">
+    <h1 class="logo">Sacred Oracle</h1>
+    <p class="tagline">64 Divine Hexagrams · A Living Code of Spiritual Wisdom</p >
+    Buy Now for $64
+  </header>
+<!-- 英雄图区 -->
+  <section class="hero-section" style="text-align: center; padding: 60px 20px;">
+    < img src="https://cdn.jsdelivr.net/gh/nanbowan0925/naobowan/Hexagram_30_Li_Clarity.jpg" alt="Hexagram Hero" style="max-width: 100%; border-radius: 12px; box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);">
+    <p style="font-size: 1.3rem; margin-top: 20px; line-height: 1.6; max-width: 800px; margin-left: auto; margin-right: auto;">
+      For millennia, the I Ching has echoed through time — a sacred system of cosmic intelligence.  
+      Now reimagined as a downloadable oracle deck, each of the 64 hexagrams becomes a gate to divine alignment.
+    </p >
+  </section>
 
-<!-- 使用说明 -->
-<section class="usage-section">
-  <h2 class="section-title">How It Works</h2>
-  <ul class="feature-list">
-    <li>Draw 1 card a day to align with the divine rhythm</li>
-    <li>Print it, meditate with it, or journal alongside its message</li>
-    <li>Use for private insight or to guide clients in your spiritual work</li>
-    <li>Format: PDF · 64 full-color pages · Immediate download</li>
-  </ul>
-</section>
+  <!-- 宇宙召唤 Cosmic Invocation -->
+  <section style="padding: 60px 20px; text-align: center;">
+    <h2 class="section-title">Cosmic Invocation</h2>
+    <p style="font-size: 1.2rem; line-height: 1.6; max-width: 800px; margin: auto;">
+      In the vast expanse of the cosmos, the ancient wisdom of the I Ching calls out to you.
+      It’s a timeless invitation to step into a realm where the mysteries of the universe unfold before you.
+      Let the cosmic energies guide you on this spiritual journey.
+    </p >
+  </section>
 
-<!-- 适用人群 -->
-<section class="usage-section">
-  <h2 class="section-title">Who Is It For?</h2>
-  <ul class="feature-list">
-    <li>Energy readers and spiritual intuitives</li>
-    <li>Meditators, shadow workers, and soul path seekers</li>
-    <li>Diviners who want a fresh non-tarot oracle</li>
-    <li>Creators blending East & West mysticism</li>
-  </ul>
-</section>
+  <!-- 神谕传导 Oracle Transmission -->
+  <section style="padding: 60px 20px; text-align: center;">
+    <h2 class="section-title">Oracle Transmission</h2>
+    <p style="font-size: 1.2rem; line-height: 1.6; max-width: 800px; margin: auto;">
+      The divine oracles of the 64 hexagrams carry profound messages from the spiritual realm.
+      As they are transmitted to you, open your heart and mind to receive these sacred insights.
+      Let the wisdom flow and transform your understanding of the world.
+    </p >
+  </section>
 
-<!-- 页脚 -->
-<footer class="footer-section">
-  <p class="footer-links">
-    Privacy Policy |
-    Terms of Use
-  </p >
-  <p class="contact-info">Contact: your@email.com</p >
-  <p class="disclaimer">This is a non-refundable digital download. No physical items will be shipped.</p >
-</footer>
+  <!-- 产品展示区 Product -->
+  <section class="product-section" style="padding: 60px 20px;">
+    <h2 class="section-title" style="text-align: center;">What You'll Receive</h2>
+    <ul style="list-style-type: none; padding: 0; max-width: 800px; margin: auto; font-size: 1.1rem; line-height: 1.6;">
+      <li>• 64 beautifully designed oracle cards (PDF format)</li>
+      <li>• Each card includes symbolic artwork, energy message, and poetic reflection</li>
+      <li>• Interpretations rooted in spiritual philosophy, not just fortune telling</li>
+      <li>• Use as a daily draw, meditative portal, or reading deck</li>
+      <li style="color: #ff3333;">• Digital-only. Final sale. No refunds.</li>
+    </ul>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px;">
+      <div style="text-align: center; max-width: 280px;">
+        < img src="https://cdn.jsdelivr.net/gh/nanbowan0925/naobowan/Hexagram_27_Yi_Nourishment.jpg" style="width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);">
+        <p class="quote">“You are already being fed. What you nourish within, will feed the cosmos in return.”</p >
+      </div>
+      <div style="text-align: center; max-width: 280px;">
+        < img src="https://cdn.jsdelivr.net/gh/nanbowan0925/naobowan/Hexagram_30_Li_Clarity.jpg" style="width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);">
+        <p class="quote">“Let illumination rise from within. Your fire is not for destruction—it is revelation.”</p >
+      </div>
+      <div style="text-align: center; max-width: 280px;">
+        < img src="https://cdn.jsdelivr.net/gh/nanbowan0925/naobowan/Hexagram_55_Feng_Abundance.jpg" style="width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);">
+        <p class="quote">“This is not excess. This is the sacred overflow. You are allowed to shine in fullness.”</p >
+      </div>
+    </div>
+  </section>
+<!-- What You’ll Receive - Structured 展示 -->
+  <section style="padding: 60px 20px; background: rgba(0,0,0,0.6);">
+    <h2 class="section-title" style="text-align: center;">What You’ll Receive (Structured)</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1200px; margin: auto;">
+      <div style="max-width: 300px;">
+        <h3 style="color: #e2b714; text-shadow: 1px 1px 5px #000;">High-Quality PDF Cards</h3>
+        <p style="line-height: 1.6; color: #fff; text-shadow: 1px 1px 3px #000;">Each card is crafted with precision, offering a visual and spiritual feast. The format ensures easy access and portability.</p >
+      </div>
+      <div style="max-width: 300px;">
+        <h3 style="color: #e2b714; text-shadow: 1px 1px 5px #000;">Symbolic Messages</h3>
+        <p style="line-height: 1.6; color: #fff; text-shadow: 1px 1px 3px #000;">Adorned with divine visuals and poetic words, each card gives depth and new dimension to each hexagram.</p >
+      </div>
+      <div style="max-width: 300px;">
+        <h3 style="color: #e2b714; text-shadow: 1px 1px 5px #000;">Spiritual Philosophy</h3>
+        <p style="line-height: 1.6; color: #fff; text-shadow: 1px 1px 3px #000;">Interpretations based in spirit—not superstition—help you align with deeper truths on your path.</p >
+      </div>
+    </div>
+  </section>
 
+  <!-- 使用方式 -->
+  <section style="padding: 60px 20px;">
+    <h2 class="section-title" style="text-align: center;">How to Use</h2>
+    <ul style="max-width: 700px; margin: auto; font-size: 1.1rem; line-height: 1.6; color: #fff; text-shadow: 1px 1px 4px #000;">
+      <li>• Pull a card daily to align with cosmic rhythm</li>
+      <li>• Use in meditation, soul journaling, or ritual</li>
+      <li>• Read aloud or reflect on each divine phrase</li>
+      <li>• 64-page full-color PDF, instantly downloadable</li>
+    </ul>
+  </section>
+
+  <!-- Sacred Machine - 神性机制 -->
+  <section style="padding: 60px 20px; background: rgba(0,0,0,0.5);">
+    <h2 class="section-title" style="text-align: center;">Sacred Machine</h2>
+    <p style="max-width: 900px; margin: auto; font-size: 1.15rem; line-height: 1.6; text-align: center; color: #fff; text-shadow: 1px 1px 5px #000;">
+      The 64 hexagrams are more than symbols. They form a cosmic mechanism—a sacred machine of pattern and flow.
+      When aligned with, they help us tap into the greater divine order, revealing direction, truth, and inner power.
+    </p >
+  </section>
+
+  <!-- User Echo 用户反馈 -->
+  <section style="padding: 60px 20px;">
+    <h2 class="section-title" style="text-align: center;">User Echo</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;">
+      <div style="max-width: 300px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;">
+        <p style="font-style: italic; color: #fff; text-shadow: 1px 1px 3px #000;">“This oracle gave me clarity and comfort during a major life transition. It’s not just a product—it’s a spiritual guide.”</p >
+        <p style="text-align: right; color: #ccc;">– A. Fox</p >
+      </div>
+      <div style="max-width: 300px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;">
+        <p style="font-style: italic; color: #fff; text-shadow: 1px 1px 3px #000;">“Visually stunning. Spiritually awakening. It feels like the I Ching was reborn into light.”</p >
+        <p style="text-align: right; color: #ccc;">– M. Rivera</p >
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing Transmission -->
+  <section style="padding: 60px 20px; text-align: center; background: rgba(255, 255, 255, 0.05);">
+    <h2 class="section-title">Closing Transmission</h2>
+    <p style="max-width: 800px; margin: auto; font-size: 1.2rem; color: #fff; text-shadow: 1px 1px 4px #000;">
+      This Oracle has found you. And now, you hold a key to the divine pattern.
+      Walk forward with reverence. You are never without guidance again.
+    </p >
+  </section>
+
+  <!-- 页脚 -->
+  <footer style="padding: 30px 20px; text-align: center; background: rgba(0,0,0,0.8); font-size: 0.9rem;">
+    <p>Privacy Policy | Terms of Use</p >
+    <p style="color: #888;">Contact: your@email.com</p >
+    <p style="color: #666;">This is a digital download only. No physical items will be shipped.</p >
+  </footer>
 </body>
 </html>

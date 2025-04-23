@@ -1,144 +1,43 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>支付确认 - 自动发货系统</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing - Sacred Oracle 64 Hexagram Deck</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(120deg, #0d0d0d, #1a1a1a);
-      color: #f2f2f2;
-      overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 100px auto;
-      background: rgba(30, 30, 30, 0.9);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
-      animation: fadeInUp 1s ease forwards;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #00ffff;
-    }
-
-    p {
-      text-align: center;
-      font-size: 16px;
-      margin-bottom: 30px;
-    }
-
-    .wallet-box {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #111;
-      border: 1px solid #00ffff;
-      border-radius: 10px;
-      padding: 12px 16px;
-      margin-bottom: 30px;
-      font-family: monospace;
-    }
-
-    .wallet-box button {
-      background: #00ffff;
-      color: #000;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      margin-bottom: 20px;
-      background: #1f1f1f;
-      color: #fff;
-      box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1);
-    }
-
-    button[type="submit"] {
-      width: 100%;
-      padding: 14px;
-      font-size: 16px;
-      background: #00ffff;
-      color: #000;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-      transition: 0.3s;
-    }
-
-    button[type="submit"]:hover {
-      background: #00cccc;
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
-  <script>
-    function submitForm(event) {
-      const txid = document.getElementById("txid").value.trim();
-      if (!txid) {
-        alert("请填写交易哈希");
-        event.preventDefault();
-        return false;
-      }
-      return true;
-    }
-
-    function copyAddress() {
-      const addr = document.getElementById("wallet").innerText;
-      navigator.clipboard.writeText(addr);
-      alert("已复制收款地址");
-    }
-  </script>
 </head>
 <body>
-  <div class="container">
-    <h2>支付确认</h2>
-    <p>请支付 <strong>29 USDT</strong> 到以下地址（TRC20 网络）</p >
-    <div class="wallet-box">
-      <span id="wallet">TFcnbLJJTrs3q8VcorY5BhysPPsKY9U5CB</span>
-      <button onclick="copyAddress()">复制</button>
-    </div>
+  <header>
+    <h1>Sacred Oracle</h1>
+    <p>64 Hexagram Spiritual PDF Deck</p >
+  </header>
 
-    <form action="http://38.60.250.63:8008/verify" method="POST" onsubmit="return submitForm(event)">
-      <input type="hidden" name="product" value="">
-      <label for="txid">请输入交易哈希（TXID）</label>
-      <input type="text" name="txid" id="txid" required />
-      <button type="submit">我已付款，确认下载</button>
-    </form>
-  </div>
+  <main>
+    <section>
+      <h2>Pricing</h2>
+      <p><strong>USD $64.00</strong> (One-time payment)</p >
+    </section>
+
+    <section>
+      <h2>Product Delivery</h2>
+      <p>This is a digital product. Upon successful payment, you will instantly receive a download link via email. No physical shipping involved.</p >
+    </section>
+
+    <section>
+      <h2>Purchase Includes</h2>
+      <ul>
+        <li>High-resolution PDF with 64 oracle cards</li>
+        <li>Spiritual interpretations for each hexagram</li>
+        <li>Designed for digital reading or home printing</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sacred Oracle. All rights reserved.</p >
+    Terms |
+    Privacy |
+    Refund Policy
+  </footer>
 </body>
 </html>

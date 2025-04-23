@@ -1,4 +1,4 @@
-/* ========== 全局样式 ========== */
+/* 全局样式 */
 body {
   font-family: "Roboto Slab", serif;
   margin: 0;
@@ -8,7 +8,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ========== 强化召唤背景：两仪八卦 + 星点宇宙 + 内环雕刻 ========== */
+/* 背景召唤层：太极阴阳鱼 + 星河 + 光圈 + 流星 */
 .background-overlay {
   position: fixed;
   top: 0;
@@ -20,164 +20,95 @@ body {
   overflow: hidden;
 }
 
-/* 背景星点流光层 */
-.background-overlay.stars {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background-image: 
-    radial-gradient(0.5px 0.5px at 20% 30%, rgba(255,255,255,0.1) 100%, transparent 0),
-    radial-gradient(0.5px 0.5px at 80% 70%, rgba(255,255,255,0.1) 100%, transparent 0),
-    radial-gradient(0.5px 0.5px at 60% 10%, rgba(255,255,255,0.1) 100%, transparent 0),
-    radial-gradient(0.5px 0.5px at 10% 90%, rgba(255,255,255,0.1) 100%, transparent 0);
-  animation: drift-stars 120s linear infinite;
-  z-index: -2;
-}
-
-/* 流星效果 */
-.background-overlay.meteor {
-  position: absolute;
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
-  top: -60px;
-  animation: meteor-move 10s linear infinite;
-  z-index: -2;
-}
-
-@keyframes meteor-move {
-  from {
-    transform: translateX(calc(-100% * var(--meteor-start, 0))) translateY(0);
-  }
-  to {
-    transform: translateX(calc(100% * var(--meteor-end, 1))) translateY(100vh);
-  }
-}
-
-/* 星云闪烁效果 */
-.background-overlay.nebula {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  opacity: 0.5;
-  animation: nebula-blink 8s ease-in-out infinite;
-  z-index: -2;
-}
-
-.background-overlay.nebula:nth-child(1) {
-  background: radial-gradient(circle, rgba(155, 89, 182, 0.8), rgba(0, 0, 0, 0));
-  left: 20%;
-  top: 30%;
-}
-
-.background-overlay.nebula:nth-child(2) {
-  background: radial-gradient(circle, rgba(46, 204, 113, 0.8), rgba(0, 0, 0, 0));
-  left: 70%;
-  top: 10%;
-}
-
-.background-overlay.nebula:nth-child(3) {
-  background: radial-gradient(circle, rgba(231, 76, 60, 0.8), rgba(0, 0, 0, 0));
-  left: 40%;
-  top: 60%;
-}
-
-@keyframes nebula-blink {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-/* 光线波动效果 */
-.background-overlay.wave-light {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
-  animation: wave-move 15s linear infinite;
-  z-index: -2;
-}
-
-@keyframes wave-move {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-
-/* 八卦旋转盘（优化阴阳鱼形状） */
+/* 星空背景漂浮星点 */
 .background-overlay::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(50vmin, 400px);
-  height: min(50vmin, 400px);
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: #000;
-  box-shadow: 
-    0 0 100px rgba(255, 255, 255, 0.03),
-    inset 0 0 80px rgba(255, 255, 255, 0.1);
-  animation: rotate-yin-yang 16s linear infinite;
+  inset: 0;
+  background:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.08) 100%, transparent 0),
+    radial-gradient(1px 1px at 80% 70%, rgba(255,255,255,0.08) 100%, transparent 0),
+    radial-gradient(1px 1px at 60% 10%, rgba(255,255,255,0.04) 100%, transparent 0),
+    radial-gradient(1px 1px at 10% 90%, rgba(255,255,255,0.06) 100%, transparent 0);
+  background-size: 1000px 1000px;
+  animation: stars-drift 120s linear infinite;
 }
 
-/* 优化后的太极点（黑中白点，白中黑点），使阴阳鱼形状更准确 */
+/* 太极阴阳鱼形态核心图 */
 .background-overlay::after {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
-  width: min(50vmin, 400px);
-  height: min(50vmin, 400px);
+  width: 420px;
+  height: 420px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center, transparent 45%, rgba(255,255,255,0.04) 90%, transparent 100%),
+              conic-gradient(#000 0deg 180deg, #fff 180deg 360deg);
+  border-radius: 50%;
+  animation: rotate-yin-yang 30s linear infinite;
+  mask-image: radial-gradient(circle, black 99%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle, black 99%, transparent 100%);
+  box-shadow:
+    0 0 40px 10px rgba(255,255,255,0.08),
+    0 0 80px 30px rgba(255,255,255,0.06) inset;
+}
+
+/* 阴阳太极点（黑中白 + 白中黑） */
+.background-overlay yin-dot {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  height: 420px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: 
+  background:
     radial-gradient(circle at 50% 25%, #fff 12px, transparent 13px),
-    radial-gradient(circle at 50% 75%, #000 12px, transparent 13px),
-    conic-gradient(
-      from 0deg at 50% 50%,
-      #000 0deg 180deg,
-      #fff 180deg 360deg
-    );
+    radial-gradient(circle at 50% 75%, #000 12px, transparent 13px);
+  animation: rotate-yin-yang 30s linear infinite;
   pointer-events: none;
-  animation: rotate-yin-yang 16s linear infinite;
 }
 
-/* 动画定义 */
+/* 光圈召唤特效 */
+.background-overlay halo-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(226,183,20,0.15) 40%, transparent 70%);
+  animation: pulse-halo 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 动态动画 */
 @keyframes rotate-yin-yang {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-@keyframes drift-stars {
-  from {
-    background-position: 0 0, 0 0, 0 0, 0 0;
-  }
-  to {
-    background-position: 1000px 0, -1000px 0, 500px 0, -500px 0;
-  }
+@keyframes stars-drift {
+  from { background-position: 0 0, 0 0, 0 0, 0 0; }
+  to   { background-position: 1000px 0, -1000px 0, 500px 0, -500px 0; }
 }
 
-/* ========== 顶部区域样式 ========== */
+@keyframes pulse-halo {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+}
+
+/* ========== 以下为原样保留部分 ========== */
+
 .header-section {
   text-align: center;
   padding: 60px 20px;
   position: relative;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
-  z-index: 1;
 }
 
 .logo {
@@ -232,7 +163,6 @@ body {
   box-shadow: 0 6px 15px rgba(226, 183, 20, 0.7);
 }
 
-/* ========== 英雄区样式 ========== */
 .hero-section {
   text-align: center;
   padding: 80px 20px;
@@ -240,7 +170,6 @@ body {
   border-radius: 20px;
   margin: 40px 20px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-  z-index: 1;
 }
 
 .hero-image {
@@ -262,11 +191,9 @@ body {
   line-height: 1.5;
 }
 
-/* ========== 产品介绍区样式 ========== */
 .product-section {
   text-align: center;
   padding: 60px 20px;
-  z-index: 1;
 }
 
 .section-title {
@@ -316,14 +243,6 @@ body {
   transform: scale(1.05);
 }
 
-.quote {
-  font-style: italic;
-  font-size: 1.2rem;
-  margin-top: 12px;
-  color: #ccc;
-}
-
-/* ========== 神性召唤区样式 ========== */
 .mystical-section {
   text-align: center;
   padding: 60px 20px;
@@ -331,7 +250,6 @@ body {
   border-radius: 20px;
   margin: 40px 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  z-index: 1;
 }
 
 .mystical-text {
@@ -342,20 +260,16 @@ body {
   line-height: 1.5;
 }
 
-/* ========== 使用说明区和适用人群区样式 ========== */
 .usage-section {
   text-align: center;
   padding: 60px 20px;
-  z-index: 1;
 }
 
-/* ========== 页脚样式 ========== */
 .footer-section {
   text-align: center;
   padding: 30px 20px;
   background: rgba(0, 0, 0, 0.8);
   font-size: 0.9rem;
-  z-index: 1;
 }
 
 .footer-links a {

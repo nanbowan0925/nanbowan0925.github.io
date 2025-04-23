@@ -243,3 +243,54 @@ body {
 .footer-links a:hover {
   color: #fff;
 }
+/* ===== 新增 · 星空银河背景 + 太极点结构 ===== */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  background: linear-gradient(to bottom, #0a0f1c 0%, #000 100%),
+              url('https://images.unsplash.com/photo-1604079628757-c7ad20bfb021?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.7) saturate(1.2) blur(0px);
+  opacity: 0.8;
+  animation: pulse-space 60s ease-in-out infinite;
+}
+
+/* 太极点补充 */
+.yin-yang-core::before,
+.yin-yang-core::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.yin-yang-core::before {
+  top: 25%;
+  left: 50%;
+  background: #000;
+  transform: translate(-50%, -50%);
+}
+
+.yin-yang-core::after {
+  bottom: 25%;
+  left: 50%;
+  background: #fff;
+  transform: translate(-50%, 50%);
+}
+
+/* 星河流动呼吸感 */
+@keyframes pulse-space {
+  0%, 100% {
+    filter: brightness(0.7) saturate(1.1);
+  }
+  50% {
+    filter: brightness(1.1) saturate(1.5);
+  }
+}

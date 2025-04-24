@@ -366,32 +366,102 @@
   animateStars();
 </script>
 
-<!-- 神兽一闪而过图腾影（30卦 · 离卦） -->
-<img id="divine-beast" src="https://github.com/nanbowan0925/naobowan/blob/main/Hexagram_30_Li_Clarity.jpg?raw=true" alt="Divine Beast">
+<!-- 火凤凰幻影穿越 + 粒子残影 + 八卦金环 + 神性文字 -->
+<div id="phoenix"></div>
+<div id="phoenix-text">The Sacred Light Rises — Clarity pierces the dark.</div>
+<div id="golden-ring"></div>
 
 <style>
-#divine-beast {
+/* 凤凰幻影核心 */
+#phoenix {
   position: fixed;
   top: 50%;
-  left: -600px;
-  width: 300px;
-  height: auto;
-  opacity: 0;
-  transform: translateY(-50%);
-  filter: blur(1px) brightness(1.3);
+  left: -300px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(255,130,0,0.8) 10%, rgba(255,60,0,0.4) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(6px) drop-shadow(0 0 25px rgba(255,160,60,0.8));
+  animation: phoenixFlight 5.5s ease-out 1.5s forwards;
+  z-index: 13;
   pointer-events: none;
-  z-index: 10;
-  animation: beast-glide 4s ease-out 1s forwards;
+  transform: translateY(-50%) rotate(30deg);
 }
 
-@keyframes beast-glide {
-  0%   { left: -600px; opacity: 0; }
-  20%  { opacity: 0.7; }
-  50%  { left: 50%; opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
-  80%  { opacity: 0.5; }
-  100% { left: 120vw; opacity: 0; }
+/* 残影尾焰 */
+#phoenix::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 60px;
+  background: radial-gradient(ellipse at center, rgba(255,180,90,0.4), transparent);
+  transform: translate(-50%, -50%) rotate(20deg);
+  filter: blur(12px);
+  animation: tailFlicker 5s ease-out 1.5s forwards;
 }
-</style>  
+
+/* 文字显现 */
+#phoenix-text {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.8em;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  text-shadow: 0 0 12px rgba(255,200,120,0.8);
+  opacity: 0;
+  z-index: 14;
+  pointer-events: none;
+  animation: summonText 6s ease-out 1.8s forwards;
+}
+
+/* 八卦中心金环扩散 */
+#golden-ring {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255,215,100,0.8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.2);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 12;
+  animation: goldenPulse 2.8s ease-out 2.2s forwards;
+}
+
+/* 动画定义 */
+@keyframes phoenixFlight {
+  0%   { left: -300px; opacity: 0; transform: translateY(-50%) scale(0.6) rotate(30deg); }
+  20%  { opacity: 0.7; filter: blur(3px); }
+  50%  { left: 50%; opacity: 1; transform: translate(-50%, -50%) scale(1.3) rotate(0deg); filter: blur(1px); }
+  75%  { transform: translate(-50%, -50%) scale(1.1) rotate(-10deg); opacity: 0.5; }
+  100% { left: 120vw; opacity: 0; filter: blur(10px); }
+}
+@keyframes tailFlicker {
+  0%   { opacity: 0; transform: scale(0.8) rotate(20deg); }
+  30%  { opacity: 0.6; transform: scale(1) rotate(18deg); }
+  60%  { opacity: 0.3; transform: scale(1.1) rotate(16deg); }
+  100% { opacity: 0; transform: scale(1.2) rotate(15deg); }
+}
+
+@keyframes summonText {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+  20%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes goldenPulse {
+  0%   { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+  30%  { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+  60%  { opacity: 0.8; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2.5); }
+}
   
 </body>
 </html>

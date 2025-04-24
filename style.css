@@ -1,472 +1,197 @@
-/* ===== 全局基础样式 ===== */
+/* 全站背景和字体 */
 body {
-  font-family: "Roboto Slab", serif;
   margin: 0;
   padding: 0;
-  background: #000;
+  font-family: 'Georgia', serif;
+  background: radial-gradient(ellipse at center, #0d0d0f 0%, #000000 100%);
   color: #f0f0f0;
-  overflow-x: hidden;
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ===== 背景星河召唤层 ===== */
-.background-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: radial-gradient(ellipse at center, #101018 0%, #000000 100%);
-  overflow: hidden;
-  z-index: -1;
+/* 标题风格 */
+h1, h2, h3 {
+  font-family: 'Georgia', serif;
+  color: #f5e7b6;
 }
 
-/* ===== 星点流动层 ===== */
-.cosmic-stars {
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background: repeating-radial-gradient(circle, #ffffff10 1px, transparent 2px);
-  animation: star-shimmer 60s linear infinite;
-  opacity: 0.2;
+h1 {
+  font-size: 2.4em;
+  margin-bottom: 0.4em;
 }
 
-@keyframes star-shimmer {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(-50%, -50%); }
+h2 {
+  font-size: 1.8em;
+  margin-top: 1.5em;
 }
 
-/* ===== 太极核心（真实阴阳鱼） ===== */
-.yin-yang-core {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 240px;
-  height: 240px;
-  transform: translate(-50%, -50%);
-  animation: spin-yin-yang 20s linear infinite;
-  z-index: 1;
+h3 {
+  font-size: 1.2em;
+  margin-top: 1.5em;
+  color: #f5e7b6;
 }
 
-.yin-yang-core svg {
-  width: 100%;
-  height: 100%;
-}
-
-@keyframes spin-yin-yang {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-/* ===== 动态流星（左 → 右） ===== */
-.shooting-star {
-  position: absolute;
-  width: 2px;
-  height: 80px;
-  background: linear-gradient(to right, #fff, transparent);
-  animation: shooting-star 6s linear infinite;
-  opacity: 0.7;
-}
-
-@keyframes shooting-star {
-  0% {
-    transform: translateX(-150%) translateY(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(150vw) translateY(0);
-    opacity: 0;
-  }
-}
-
-/* ===== 中心光晕环 ===== */
-.halo-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
-  animation: halo-pulse 4s ease-in-out infinite;
-}
-
-@keyframes halo-pulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-}
-
-/* ===== 八卦环符文（中心环绕） ===== */
-.bagua-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300px;
-  height: 300px;
-  transform: translate(-50%, -50%);
-  animation: rotate-bagua 60s linear infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-@keyframes rotate-bagua {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-.bagua-ring .glyph {
-  width: 25%;
-  height: 25%;
-  font-size: 24px;
-  color: #fff;
-  text-align: center;
-  line-height: 100%;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-  transition: transform 0.3s;
-}
-
-.bagua-ring .glyph:hover {
-  transform: scale(1.3);
-  color: #e2b714;
-}
-/* ===== 顶部标题区域 ===== */
-.header-section {
-  text-align: center;
-  padding: 80px 20px;
-  position: relative;
-  z-index: 2;
-  background: transparent;
-}
-
-.logo {
-  font-size: 3.5rem;
-  color: #e2b714;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
-  margin: 0;
-}
-
-.tagline {
-  font-size: 1.6rem;
-  margin-top: 10px;
-  color: #ffffff;
-  opacity: 0.9;
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-}
-
-/* ===== 神性按钮 ===== */
-.cta-button {
-  display: inline-block;
-  margin-top: 30px;
-  background: linear-gradient(45deg, #e2b714, #ff00ff);
-  color: #000;
-  padding: 15px 35px;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: bold;
+/* 链接样式 */
+a {
+  color: #e6cf94;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
-.cta-button:hover {
-  background: linear-gradient(45deg, #ffd700, #00ffff);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
-  transform: translateY(-2px);
+a:hover {
+  color: #fff2c1;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+/* 主按钮样式 */
+.main-button {
+  display: inline-block;
+  margin-top: 1.5em;
+  background: linear-gradient(90deg, #f2dc97, #e8c780);
+  color: #000;
+  padding: 14px 28px;
+  font-weight: bold;
+  border-radius: 6px;
+  font-size: 1.1em;
+  box-shadow: 0 0 16px rgba(255, 236, 178, 0.2);
+  transition: all 0.4s ease;
+  text-decoration: none;
 }
 
-/* ===== 英雄图展示区 ===== */
-.hero-section {
-  text-align: center;
+.main-button:hover {
+  box-shadow: 0 0 32px rgba(255, 255, 200, 0.3);
+  transform: scale(1.04);
+}
+
+/* 卦象图片 hover 动效 */
+img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(245, 230, 160, 0.3);
+  transition: all 0.4s ease;
+}
+
+/* 文本容器最大宽度 */
+section {
+  max-width: 960px;
+  margin: 0 auto;
   padding: 60px 20px;
-  z-index: 2;
-  position: relative;
 }
 
-.hero-image {
-  max-width: 600px;
-  width: 90%;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+/* FAQ 间距调整 */
+section div {
+  margin-bottom: 40px;
 }
 
-.hero-text {
-  font-size: 1.5rem;
-  color: #ffffff;
-  line-height: 1.7;
-  margin-top: 30px;
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-}
-/* ===== 产品展示区 ===== */
-.product-section {
-  padding: 80px 20px;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-
-.preview-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 40px;
-}
-
-.image-block {
-  width: 300px;
-  transition: all 0.3s ease;
+/* 页脚 */
+footer {
+  font-size: 0.9em;
+  opacity: 0.6;
+  padding: 40px 20px;
   text-align: center;
 }
 
-.image-block:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+footer a {
+  color: #e9d49d;
+}
+/* 八卦旋转图视觉增强 */
+#bagua {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  margin-top: -250px;
+  margin-left: -250px;
+  opacity: 0.08;
+  animation: spin 60s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(1px) brightness(1.2);
+  mix-blend-mode: screen;
 }
 
-.product-img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+/* 全站背景宇宙光纹模拟（渐变星感） */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.9) 100%);
+  pointer-events: none;
+  z-index: -2;
+  animation: pulseBg 18s ease-in-out infinite alternate;
 }
 
-.quote {
-  font-size: 1rem;
-  font-style: italic;
-  color: #ffd700;
-  margin-top: 10px;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-  animation: quote-fade-in 1s ease forwards;
+@keyframes pulseBg {
+  0% { opacity: 0.04; filter: blur(2px); }
+  100% { opacity: 0.09; filter: blur(6px); }
 }
 
-@keyframes quote-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+/* 标题入场金光 */
+.centered-header h1 {
+  animation: fadeInGlow 2.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(-20px);
+}
+@keyframes fadeInGlow {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 12px rgba(255,240,190,0.3), 0 0 30px rgba(255,240,180,0.1);
   }
+}
+
+/* 按钮呼吸动效 */
+@keyframes buttonPulse {
+  0% { transform: scale(1); box-shadow: 0 0 14px rgba(255,240,190,0.15); }
+  50% { transform: scale(1.03); box-shadow: 0 0 28px rgba(255,240,200,0.25); }
+  100% { transform: scale(1); box-shadow: 0 0 14px rgba(255,240,190,0.15); }
+}
+.main-button {
+  animation: buttonPulse 5s ease-in-out infinite;
+}
+
+/* 卦象图块浮现入场 */
+section div {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: riseIn 1.2s ease-out forwards;
+  animation-delay: 0.5s;
+}
+@keyframes riseIn {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
-/* ===== 页脚：银河动态背景 + 星轨效果 ===== */
-.footer-section {
-  text-align: center;
-  padding: 50px 20px;
-  font-size: 0.95rem;
-  background: radial-gradient(ellipse at center, #0a0a1f 0%, #000000 80%);
-  color: #ccc;
-  position: relative;
-  z-index: 2;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+/* 鼠标移动光点追踪（星辉回应） */
+body {
+  cursor: crosshair;
 }
 
-.footer-links a {
-  color: #fff;
-  margin: 0 10px;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #ffd700;
-  text-decoration: underline;
-}
-
-.contact-info {
-  margin-top: 10px;
-  opacity: 0.85;
-}
-
-.disclaimer {
-  font-size: 0.8rem;
-  color: #aaa;
-  margin-top: 10px;
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
-}
-/* ===== 公共段落容器样式 ===== */
-.cosmic-invocation-section,
-.oracle-transmission-section,
-.what-you-receive-structured-section,
-.usage-section,
-.sacred-machine-section,
-.user-echo-section,
-.card-showcase-section,
-.why-this-oracle-section,
-.closing-transmission-section,
-.mystical-section {
-  padding: 80px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-
-/* ===== 标题下的星光分割线 ===== */
-.section-title {
-  font-size: 2.2rem;
-  color: #fff;
-  text-align: center;
-  margin-bottom: 30px;
-  position: relative;
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
-}
-
-.section-title::after {
-  content: "";
+body::after {
+  content: '';
+  position: fixed;
+  top: var(--y, 50%);
+  left: var(--x, 50%);
   width: 80px;
-  height: 2px;
-  background: linear-gradient(to right, transparent, #fff, transparent);
-  display: block;
-  margin: 12px auto 0;
-  box-shadow: 0 0 10px #fff;
-}
-
-/* ===== 分栏内容结构 ===== */
-.structured-content,
-.user-feedback,
-.card-analysis {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 40px;
-  margin-top: 40px;
-}
-
-.content-block,
-.feedback-block,
-.card-block {
-  width: calc(33.333% - 30px);
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
-}
-
-.content-block:hover,
-.feedback-block:hover,
-.card-block:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 18px rgba(255, 255, 255, 0.2);
-}
-
-/* ===== 卡片分析图像样式 ===== */
-.card-block img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-/* ===== 用户回响字体样式 ===== */
-.user-quote {
-  font-style: italic;
-  color: #ddd;
-  margin-bottom: 10px;
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
-}
-
-.user-name {
-  font-weight: bold;
-  color: #fff;
-  opacity: 0.8;
-}
-
-/* ===== 文本正文样式 ===== */
-.cosmic-text,
-.oracle-text,
-.sacred-machine-text,
-.closing-text {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: #ddd;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
-}
-
-/* ===== 收尾文字强调效果 ===== */
-.closing-text {
-  font-style: italic;
-  color: #ffe9a3;
-  text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
-}
-/* ===== 星团能量爆发背景（使用 radial mask 渐变）===== */
-.energy-burst {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 1000px;
-  height: 1000px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 0;
-  animation: pulse-burst 6s ease-in-out infinite;
-}
-
-@keyframes pulse-burst {
-  0%, 100% {
-    opacity: 0.3;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-}
-
-/* ===== 星轨环绕动态（模拟陀螺式召唤阵）===== */
-.star-ring {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 600px;
-  height: 600px;
-  border: 2px dashed rgba(255, 255, 255, 0.2);
+  height: 80px;
+  background: radial-gradient(circle, rgba(255, 240, 200, 0.15) 0%, transparent 70%);
   border-radius: 50%;
+  pointer-events: none;
   transform: translate(-50%, -50%);
-  animation: spin-ring 25s linear infinite;
-  z-index: 0;
+  transition: top 0.1s ease, left 0.1s ease;
+  z-index: -1;
 }
 
-@keyframes spin-ring {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-/* ===== 中心召唤符文闪光动画 ===== */
-.center-glyph-glow {
+/* JS绑定光点位置 */
+#starfield {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  font-size: 100px;
-  color: #ffe55e;
-  font-weight: bold;
-  transform: translate(-50%, -50%);
-  text-shadow: 0 0 10px #ffe55e, 0 0 20px #ffcc00, 0 0 30px #fff;
-  animation: glow-glyph 3s ease-in-out infinite;
-  z-index: 2;
-  font-family: "STKaiti", "KaiTi", serif;
-}
-
-@keyframes glow-glyph {
-  0%, 100% {
-    text-shadow: 0 0 10px #ffe55e, 0 0 20px #ffcc00, 0 0 30px #fff;
-    opacity: 1;
-  }
-  50% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff;
-    opacity: 0.5;
-  }
+  top: 0;
+  left: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: none;
 }

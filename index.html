@@ -24,7 +24,7 @@
       height: 500px;
       margin-top: -250px;
       margin-left: -250px;
-      opacity: 0.2;
+      opacity: 0.35;
       z-index: -1;
       animation: spin 60s linear infinite;
       pointer-events: none;
@@ -245,8 +245,11 @@
   }
 
   function drawStars() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "rgba(255,255,255,0.2)";
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white";
+  ctx.shadowBlur = 6;
+  ctx.shadowColor = "white";
+  ctx.globalAlpha = 0.8;
     for (let i = 0; i < stars.length; i++) {
       const s = stars[i];
       ctx.beginPath();
@@ -267,11 +270,11 @@
 
   window.addEventListener("resize", () => {
     resizeCanvas();
-    createStars(150);
+    createStars(220);
   });
 
   resizeCanvas();
-  createStars(150);
+  createStars(220);
   animateStars();
 </script>
 

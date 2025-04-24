@@ -194,15 +194,79 @@
     </p >
   </section>
 
-  <!-- 页脚区 -->
-  <footer style="text-align: center; padding: 40px 20px; font-size: 0.9em; opacity: 0.6;">
-    <p>© 2024 Sacred Oracle. All rights reserved.</p >
-    <p>
-      Terms of Service |
-      Privacy Policy |
-      Refund Policy
-    </p >
-    <p>Contact: </p >
-  </footer>
+ <!-- 页脚区 -->
+<footer style="text-align: center; padding: 40px 20px; font-size: 0.9em; opacity: 0.6;">
+  <p>© 2024 Sacred Oracle. All rights reserved.</p >
+  <p>
+    Terms of Service |
+    Privacy Policy |
+    Refund Policy
+  </p >
+  <p>Contact: </p >
+</footer>
+
+<!-- 鼠标星辉追踪效果 -->
+<script>
+  document.addEventListener('mousemove', e => {
+    document.body.style.setProperty('--x', `${e.clientX}px`);
+    document.body.style.setProperty('--y', `${e.clientY}px`);
+  });
+</script>
+
+<!-- 星尘 Canvas 粒子背景 -->
+<canvas id="starfield"></canvas>
+<script>
+  const canvas = document.getElementById("starfield");
+  const ctx = canvas.getContext("2d");
+  let stars = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function createStars(count) {
+    stars = [];
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.3,
+        d: Math.random() * 0.5 + 0.2
+      });
+    }
+  }
+
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(255,255,255,0.2)";
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+      s.y += s.d;
+      if (s.y > canvas.height) {
+        s.y = 0;
+        s.x = Math.random() * canvas.width;
+      }
+    }
+  }
+
+  function animateStars() {
+    drawStars();
+    requestAnimationFrame(animateStars);
+  }
+
+  window.addEventListener("resize", () => {
+    resizeCanvas();
+    createStars(150);
+  });
+
+  resizeCanvas();
+  createStars(150);
+  animateStars();
+</script>
+
 </body>
 </html>

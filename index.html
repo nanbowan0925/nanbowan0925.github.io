@@ -16,19 +16,21 @@
     }
 
     /* 八卦旋转背景 */
-    #bagua {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 500px;
-      height: 500px;
-      margin-top: -250px;
-      margin-left: -250px;
-      opacity: 0.06;
-      z-index: -1;
-      animation: spin 60s linear infinite;
-      pointer-events: none;
-    }
+   #bagua {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  margin-top: -250px;
+  margin-left: -250px;
+  opacity: 0.2;  /* 从 0.08 提升为 0.2 */
+  animation: spin 60s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+  filter: drop-shadow(0 0 6px rgba(255, 220, 140, 0.2)) blur(0.5px) brightness(1.15);
+  mix-blend-mode: screen;
+}
 
     @keyframes spin {
       from { transform: rotate(0deg); }
@@ -77,11 +79,23 @@
   <img id="bagua" src="https://github.com/nanbowan0925/naobowan/blob/main/%E5%85%AB%E5%8D%A6%E5%9B%BE.jpg?raw=true" alt="Bagua Rotating Background">
 
   <!-- 标题召唤区 -->
-  <div class="centered-header">
-    <h1>The Sacred I Ching Oracle</h1>
-    <p>64 Hexagrams. One Universal Code. A Cosmic Transmission in Digital Form.</p >
-    Purchase Now – $64
-  </div>
+ <div class="centered-header">
+  <h1>The Sacred I Ching Oracle</h1>
+  <p>64 Hexagrams. One Universal Code. A Cosmic Transmission in Digital Form.</p >
+
+  <a href="#" style="
+    display: inline-block;
+    background: linear-gradient(90deg, #f2dc97, #e8c780);
+    color: #000;
+    padding: 14px 28px;
+    font-weight: bold;
+    border-radius: 6px;
+    font-size: 1.1em;
+    text-decoration: none;
+    box-shadow: 0 0 16px rgba(255, 236, 178, 0.2);
+    transition: all 0.4s ease;
+  Buy Now – $64</a >
+</div>
 <!-- 产品介绍 -->
   <section style="padding: 80px 20px; max-width: 880px; margin: 0 auto; text-align: center;">
     <h2 style="font-size: 2.4em; margin-bottom: 0.5em;">What Is This Oracle?</h2>

@@ -212,16 +212,104 @@
   <p>Contact: </p >
 </footer>
 
-<!-- 鼠标星辉追踪效果 -->
+<!-- 鼠标星辉追踪光圈 -->
+<style>
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.1), transparent 80%);
+    z-index: -1;
+    transition: background-position 0.1s;
+  }
+</style>
 <script>
   document.addEventListener('mousemove', e => {
-    document.body.style.setProperty('--x', `${e.clientX}px`);
-    document.body.style.setProperty('--y', `${e.clientY}px`);
+    document.body.style.setProperty('--x', e.clientX + 'px');
+    document.body.style.setProperty('--y', e.clientY + 'px');
   });
 </script>
 
-<!-- 星尘 Canvas 粒子背景 -->
+<!-- 星空粒子背景 -->
 <canvas id="starfield"></canvas>
+
+<!-- 八卦旋转中轴图 -->
+<img id="bagua" src="https://github.com/nanbowan0925/naobowan/blob/main/%E5%85%AB%E5%8D%A6%E5%9B%BE.jpg?raw=true" alt="Bagua">
+
+<!-- 太极光圈 -->
+<div id="taiji-glow"></div>
+
+<!-- 入场神性闪光 -->
+<div id="flash"></div>
+
+<style>
+  #starfield {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -5;
+    background: black;
+  }
+
+  #bagua {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    margin-top: -250px;
+    margin-left: -250px;
+    opacity: 0.22;
+    z-index: -2;
+    animation: spin 60s linear infinite;
+    pointer-events: none;
+  }
+
+  #taiji-glow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    margin-left: -300px;
+    margin-top: -300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,175,55,0.25) 0%, transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+    z-index: -3;
+    pointer-events: none;
+  }
+
+  #flash {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    animation: flashIn 1.2s ease-in-out;
+    z-index: 999;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  @keyframes pulse {
+    0%   { transform: scale(1); opacity: 0.4; }
+    50%  { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 0.4; }
+  }
+
+  @keyframes flashIn {
+    0%   { opacity: 1; }
+    100% { opacity: 0; }
+  }
+</style>
+
 <script>
   const canvas = document.getElementById("starfield");
   const ctx = canvas.getContext("2d");
@@ -238,18 +326,18 @@
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        r: Math.random() * 1.2 + 0.3,
+        r: Math.random() * 1.5 + 0.5,
         d: Math.random() * 0.5 + 0.2
       });
     }
   }
 
   function drawStars() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "white";
-  ctx.shadowBlur = 6;
-  ctx.shadowColor = "white";
-  ctx.globalAlpha = 0.8;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    ctx.shadowBlur = 6;
+    ctx.shadowColor = "white";
+    ctx.globalAlpha = 0.8;
     for (let i = 0; i < stars.length; i++) {
       const s = stars[i];
       ctx.beginPath();
@@ -278,5 +366,32 @@
   animateStars();
 </script>
 
+<!-- 神兽一闪而过图腾影（30卦 · 离卦） -->
+<img id="divine-beast" src="https://github.com/nanbowan0925/naobowan/blob/main/Hexagram_30_Li_Clarity.jpg?raw=true" alt="Divine Beast">
+
+<style>
+#divine-beast {
+  position: fixed;
+  top: 50%;
+  left: -600px;
+  width: 300px;
+  height: auto;
+  opacity: 0;
+  transform: translateY(-50%);
+  filter: blur(1px) brightness(1.3);
+  pointer-events: none;
+  z-index: 10;
+  animation: beast-glide 4s ease-out 1s forwards;
+}
+
+@keyframes beast-glide {
+  0%   { left: -600px; opacity: 0; }
+  20%  { opacity: 0.7; }
+  50%  { left: 50%; opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+  80%  { opacity: 0.5; }
+  100% { left: 120vw; opacity: 0; }
+}
+</style>  
+  
 </body>
 </html>
